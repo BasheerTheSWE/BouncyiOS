@@ -12,7 +12,7 @@ struct BouncyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .background(Color(uiColor: .gray))
+                .background(.gameGray)
         }
     }
 }

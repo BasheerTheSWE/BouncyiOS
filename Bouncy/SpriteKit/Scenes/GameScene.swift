@@ -9,18 +9,19 @@ import SpriteKit
 
 final class GameScene: SKScene {
     
-    let player = SKShapeNode(rectOf: CGSize(width: 120, height: 20))
+//    let player = SKShapeNode(rectOf: CGSize(width: 120, height: 20))
+    let player = Player(size: CGSize(width: 120, height: 20))
     
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        player.fillColor = .white
-        player.lineWidth = 0
+//        player.fillColor = .white
+//        player.lineWidth = 0
         player.position = CGPoint(x: frame.size.width / 2, y: 100)
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
-        player.physicsBody?.isDynamic = false
-        player.physicsBody?.allowsRotation = false
+//        player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
+//        player.physicsBody?.isDynamic = false
+//        player.physicsBody?.allowsRotation = false
         
         addChild(player)
         
@@ -62,12 +63,21 @@ final class GameScene: SKScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        let node = SKShapeNode(circleOfRadius: 20)
-        node.fillColor = .red
-        node.physicsBody = SKPhysicsBody(circleOfRadius: 20)
-        node.physicsBody?.restitution = 1
-        node.position = location
+        player.changePosition(towards: location)
         
-        addChild(node)
+//        let node = SKShapeNode(circleOfRadius: 20)
+//        node.fillColor = .red
+//        node.physicsBody = SKPhysicsBody(circleOfRadius: 20)
+//        node.physicsBody?.restitution = 1
+//        node.position = location
+//        
+//        addChild(node)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        
+        player.changePosition(towards: location)
     }
 }

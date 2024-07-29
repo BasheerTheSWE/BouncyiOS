@@ -17,7 +17,7 @@ struct ContentView: View {
             SpriteView(scene: scene)
                 .onAppear { scene.size = geo.size }
         }
-        .ignoresSafeArea(edges: [.leading, .trailing])
+        .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
     }
 }
 
