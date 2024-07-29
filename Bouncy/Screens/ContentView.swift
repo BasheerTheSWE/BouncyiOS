@@ -23,4 +23,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .background(.gameGray)
 }

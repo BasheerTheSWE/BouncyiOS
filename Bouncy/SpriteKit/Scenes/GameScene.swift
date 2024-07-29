@@ -12,11 +12,12 @@ final class GameScene: SKScene {
     let player = SKShapeNode(rectOf: CGSize(width: 120, height: 20))
     
     override func didMove(to view: SKView) {
-        backgroundColor = .gray
+        backgroundColor = .gameGray
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        player.fillColor = .red
-        player.position = CGPoint(x: 100, y: 100)
+        player.fillColor = .white
+        player.lineWidth = 0
+        player.position = CGPoint(x: frame.size.width / 2, y: 100)
         player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
         player.physicsBody?.isDynamic = false
         player.physicsBody?.allowsRotation = false
@@ -26,7 +27,7 @@ final class GameScene: SKScene {
         // Top Bar
         let topBar = SKShapeNode(rectOf: CGSize(width: size.width, height: 10))
         topBar.lineWidth = 0
-        topBar.fillColor = .cyan
+        topBar.fillColor = .gamePurple
         topBar.position = CGPoint(x: size.width / 2, y: size.height - 5)
         topBar.physicsBody = SKPhysicsBody(rectangleOf: topBar.frame.size)
         topBar.physicsBody?.isDynamic = false
@@ -37,7 +38,7 @@ final class GameScene: SKScene {
         // Leading Bar
         let leadingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height))
         leadingBar.lineWidth = 0
-        leadingBar.fillColor = .cyan
+        leadingBar.fillColor = .gamePurple
         leadingBar.position = CGPoint(x: 5, y: size.height / 2 - 5)
         leadingBar.physicsBody = SKPhysicsBody(rectangleOf: leadingBar.frame.size)
         leadingBar.physicsBody?.isDynamic = false
@@ -48,7 +49,7 @@ final class GameScene: SKScene {
         // Trailing Bar
         let trailingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height))
         trailingBar.lineWidth = 0
-        trailingBar.fillColor = .cyan
+        trailingBar.fillColor = .gamePurple
         trailingBar.position = CGPoint(x: size.width - 5, y: size.height / 2 - 5)
         trailingBar.physicsBody = SKPhysicsBody(rectangleOf: trailingBar.frame.size)
         trailingBar.physicsBody?.isDynamic = false
