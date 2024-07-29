@@ -9,21 +9,18 @@ import SpriteKit
 
 final class GameScene: SKScene {
     
-//    let player = SKShapeNode(rectOf: CGSize(width: 120, height: 20))
     let player = Player(size: CGSize(width: 120, height: 20))
+    let ball = Ball(size: CGSize(width: 20, height: 20))
     
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-//        player.fillColor = .white
-//        player.lineWidth = 0
         player.position = CGPoint(x: frame.size.width / 2, y: 100)
-//        player.physicsBody = SKPhysicsBody(rectangleOf: player.frame.size)
-//        player.physicsBody?.isDynamic = false
-//        player.physicsBody?.allowsRotation = false
-        
         addChild(player)
+        
+        ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        addChild(ball)
         
         // Top Bar
         let topBar = SKShapeNode(rectOf: CGSize(width: size.width, height: 10))
@@ -37,10 +34,10 @@ final class GameScene: SKScene {
         addChild(topBar)
         
         // Leading Bar
-        let leadingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height))
+        let leadingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
         leadingBar.lineWidth = 0
         leadingBar.fillColor = .gamePurple
-        leadingBar.position = CGPoint(x: 5, y: size.height / 2 - 5)
+        leadingBar.position = CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
         leadingBar.physicsBody = SKPhysicsBody(rectangleOf: leadingBar.frame.size)
         leadingBar.physicsBody?.isDynamic = false
         leadingBar.physicsBody?.allowsRotation = false
@@ -48,10 +45,10 @@ final class GameScene: SKScene {
         addChild(leadingBar)
         
         // Trailing Bar
-        let trailingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height))
+        let trailingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
         trailingBar.lineWidth = 0
         trailingBar.fillColor = .gamePurple
-        trailingBar.position = CGPoint(x: size.width - 5, y: size.height / 2 - 5)
+        trailingBar.position = CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
         trailingBar.physicsBody = SKPhysicsBody(rectangleOf: trailingBar.frame.size)
         trailingBar.physicsBody?.isDynamic = false
         trailingBar.physicsBody?.allowsRotation = false
@@ -77,7 +74,6 @@ final class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        
         player.changePosition(towards: location)
     }
 }

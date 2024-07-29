@@ -28,6 +28,8 @@ final class Player: SKNode {
     
     // MARK: - DESIGN
     private func setShape() {
+        guard children.count == 0 else { return }
+        
         let shape = SKShapeNode(rectOf: size)
         shape.fillColor = .white
         shape.lineWidth = 0
@@ -41,12 +43,12 @@ final class Player: SKNode {
         guard let sceneWidth = scene?.size.width else { return }
         let x = location.x
         
-        if x > size.width / 2 + 10 && x < sceneWidth - size.width / 2 - 10 {
+        if x > size.width / 2 && x < sceneWidth - size.width / 2 {
             position.x = location.x
-        } else if x < size.width / 2 + 10 {
-            position.x = size.width / 2 + 10
-        } else if x > sceneWidth - size.width / 2 - 10 {
-            position.x = sceneWidth - size.width / 2 - 10
+        } else if x < size.width / 2 {
+            position.x = size.width / 2
+        } else if x > sceneWidth - size.width / 2 {
+            position.x = sceneWidth - size.width / 2
         }
     }
 }
