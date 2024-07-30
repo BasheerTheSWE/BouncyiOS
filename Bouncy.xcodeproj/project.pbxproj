@@ -14,6 +14,8 @@
 		3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5842C56318A00C7008D /* GameScene.swift */; };
 		3A93775E2C57947F00335325 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775D2C57947F00335325 /* Player.swift */; };
 		3A9377602C581E3E00335325 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775F2C581E3E00335325 /* Ball.swift */; };
+		3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377612C58D5EC00335325 /* CollisionCategory.swift */; };
+		3A9377642C58E2BA00335325 /* NodeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377632C58E2BA00335325 /* NodeName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		3A8EB5842C56318A00C7008D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		3A93775D2C57947F00335325 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3A93775F2C581E3E00335325 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		3A9377612C58D5EC00335325 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
+		3A9377632C58E2BA00335325 /* NodeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 			children = (
 				3A93775C2C57947400335325 /* Nodes */,
 				3A8EB5832C56317F00C7008D /* Scenes */,
+				3A9377612C58D5EC00335325 /* CollisionCategory.swift */,
+				3A9377632C58E2BA00335325 /* NodeName.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -212,7 +218,9 @@
 			files = (
 				3A93775E2C57947F00335325 /* Player.swift in Sources */,
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
+				3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,
+				3A9377642C58E2BA00335325 /* NodeName.swift in Sources */,
 				3A8EB5772C56316500C7008D /* ContentView.swift in Sources */,
 				3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */,
 			);
