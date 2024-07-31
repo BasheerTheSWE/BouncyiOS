@@ -14,7 +14,6 @@ final class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
         
         player.position = CGPoint(x: frame.size.width / 2, y: 100)
@@ -68,15 +67,6 @@ final class GameScene: SKScene {
         let location = touch.location(in: self)
         
         player.changePosition(towards: location)
-        
-//        let node = SKShapeNode(circleOfRadius: 20)
-//        node.fillColor = .red
-//        node.physicsBody = SKPhysicsBody(circleOfRadius: 20)
-//        node.physicsBody?.contactTestBitMask = node.physicsBody?.collisionBitMask ?? 0
-//        node.physicsBody?.restitution = 1
-//        node.position = location
-//        
-//        addChild(node)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -88,6 +78,11 @@ final class GameScene: SKScene {
     // MARK: - UPDATE
     override func update(_ currentTime: TimeInterval) {
         ball.update()
+        
+        // Game Over:
+        if ball.position.y < -50 {
+            ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        }
     }
 }
 
@@ -103,12 +98,15 @@ extension GameScene: SKPhysicsContactDelegate {
         
         switch collision {
         case CollisionCategory.ball.rawValue | CollisionCategory.player.rawValue:
+            ball.movement.dy *= -1
             break
             
         case CollisionCategory.ball.rawValue | CollisionCategory.topBar.rawValue:
+            ball.movement.dy *= -1
             break
             
         case CollisionCategory.ball.rawValue | CollisionCategory.sideBar.rawValue:
+            ball.movement.dx *= -1
             break
             
         default:
