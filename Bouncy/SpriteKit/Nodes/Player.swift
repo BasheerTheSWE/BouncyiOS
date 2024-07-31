@@ -15,7 +15,6 @@ final class Player: SKNode {
         self.size = size
         super.init()
         
-        name = NodeName.player.rawValue
         zPosition = ZPosition.player.rawValue
         
         setPhysicsBody()

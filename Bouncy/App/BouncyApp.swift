@@ -11,7 +11,7 @@ import SwiftUI
 struct BouncyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
                 .background(.gameGray)
         }
     }

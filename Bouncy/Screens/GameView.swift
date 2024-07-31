@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  GameView.swift
 //  Bouncy
 //
 //  Created by Basheer Abdulmalik on 28/07/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SpriteKit
 
-struct ContentView: View {
+struct GameView: View {
     
     private let scene = GameScene()
     
@@ -22,6 +22,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    GameView()
         .background(.gameGray)
 }

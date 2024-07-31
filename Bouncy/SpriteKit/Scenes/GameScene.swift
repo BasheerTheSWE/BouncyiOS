@@ -12,6 +12,7 @@ final class GameScene: SKScene {
     let player = Player(size: CGSize(width: 120, height: 20))
     let ball = Ball(size: CGSize(width: 20, height: 20))
     
+    // MARK: - DID MOVE
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
         physicsWorld.contactDelegate = self
@@ -23,48 +24,22 @@ final class GameScene: SKScene {
         addChild(ball)
         
         // Top Bar
-        let topBar = SKShapeNode(rectOf: CGSize(width: size.width, height: 10))
-        topBar.name = NodeName.topBar.rawValue
-        topBar.zPosition = ZPosition.background.rawValue
-        topBar.lineWidth = 0
-        topBar.fillColor = .gamePurple
-        topBar.position = CGPoint(x: size.width / 2, y: size.height - 5)
-        topBar.physicsBody = SKPhysicsBody(rectangleOf: topBar.frame.size)
-        topBar.physicsBody?.categoryBitMask = CollisionCategory.topBar.rawValue
-        topBar.physicsBody?.isDynamic = false
-        topBar.physicsBody?.allowsRotation = false
-        
-        addChild(topBar)
+        addBar(size: CGSize(width: size.width, height: 10),
+               position: CGPoint(x: size.width / 2, y: size.height - 5),
+               categoryBitMask: .topBar)
         
         // Leading Bar
-        let leadingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
-        leadingBar.name = NodeName.sideBar.rawValue
-        leadingBar.zPosition = ZPosition.background.rawValue
-        leadingBar.lineWidth = 0
-        leadingBar.fillColor = .gamePurple
-        leadingBar.position = CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
-        leadingBar.physicsBody = SKPhysicsBody(rectangleOf: leadingBar.frame.size)
-        leadingBar.physicsBody?.categoryBitMask = CollisionCategory.sideBar.rawValue
-        leadingBar.physicsBody?.isDynamic = false
-        leadingBar.physicsBody?.allowsRotation = false
-        
-        addChild(leadingBar)
+        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)),
+               position: CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
+               categoryBitMask: .sideBar)
         
         // Trailing Bar
-        let trailingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
-        trailingBar.name = NodeName.sideBar.rawValue
-        trailingBar.zPosition = ZPosition.background.rawValue
-        trailingBar.lineWidth = 0
-        trailingBar.fillColor = .gamePurple
-        trailingBar.position = CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
-        trailingBar.physicsBody = SKPhysicsBody(rectangleOf: trailingBar.frame.size)
-        trailingBar.physicsBody?.categoryBitMask = CollisionCategory.sideBar.rawValue
-        trailingBar.physicsBody?.isDynamic = false
-        trailingBar.physicsBody?.allowsRotation = false
-        
-        addChild(trailingBar)
+        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)),
+               position: CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
+               categoryBitMask: .sideBar)
     }
     
+    // MARK: - TOUCHES
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
@@ -77,6 +52,21 @@ final class GameScene: SKScene {
         let location = touch.location(in: self)
         
         player.changePosition(towards: location)
+    }
+    
+    // MARK: - NODES
+    private func addBar(size: CGSize, position: CGPoint, categoryBitMask: CollisionCategory) {
+        let bar = SKShapeNode(rectOf: size)
+        bar.zPosition = ZPosition.background.rawValue
+        bar.lineWidth = 0
+        bar.fillColor = .gamePurple
+        bar.position = position
+        bar.physicsBody = SKPhysicsBody(rectangleOf: bar.frame.size)
+        bar.physicsBody?.categoryBitMask = categoryBitMask.rawValue
+        bar.physicsBody?.isDynamic = false
+        bar.physicsBody?.allowsRotation = false
+        
+        addChild(bar)
     }
     
     // MARK: - UPDATE

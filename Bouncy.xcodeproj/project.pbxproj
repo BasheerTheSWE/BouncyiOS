@@ -8,28 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5742C56316500C7008D /* BouncyApp.swift */; };
-		3A8EB5772C56316500C7008D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5762C56316500C7008D /* ContentView.swift */; };
+		3A8EB5772C56316500C7008D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5762C56316500C7008D /* GameView.swift */; };
 		3A8EB5792C56316600C7008D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8EB5782C56316600C7008D /* Assets.xcassets */; };
 		3A8EB57C2C56316600C7008D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8EB57B2C56316600C7008D /* Preview Assets.xcassets */; };
 		3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5842C56318A00C7008D /* GameScene.swift */; };
 		3A93775E2C57947F00335325 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775D2C57947F00335325 /* Player.swift */; };
 		3A9377602C581E3E00335325 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775F2C581E3E00335325 /* Ball.swift */; };
 		3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377612C58D5EC00335325 /* CollisionCategory.swift */; };
-		3A9377642C58E2BA00335325 /* NodeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377632C58E2BA00335325 /* NodeName.swift */; };
 		3A9691032C5ABC64004B44B3 /* ZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9691022C5ABC64004B44B3 /* ZPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A8EB5712C56316500C7008D /* Bouncy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bouncy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8EB5742C56316500C7008D /* BouncyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyApp.swift; sourceTree = "<group>"; };
-		3A8EB5762C56316500C7008D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3A8EB5762C56316500C7008D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3A8EB5782C56316600C7008D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A8EB57B2C56316600C7008D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3A8EB5842C56318A00C7008D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		3A93775D2C57947F00335325 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3A93775F2C581E3E00335325 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		3A9377612C58D5EC00335325 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
-		3A9377632C58E2BA00335325 /* NodeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeName.swift; sourceTree = "<group>"; };
 		3A9691022C5ABC64004B44B3 /* ZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,11 +61,11 @@
 		3A8EB5732C56316500C7008D /* Bouncy */ = {
 			isa = PBXGroup;
 			children = (
-				3A8EB5892C56380E00C7008D /* Utils */,
-				3A8EB5882C56321A00C7008D /* Media+Assets */,
 				3A8EB5872C56320F00C7008D /* App */,
 				3A8EB5862C56320200C7008D /* Screens */,
 				3A8EB5822C56317300C7008D /* SpriteKit */,
+				3A8EB5892C56380E00C7008D /* Utils */,
+				3A8EB5882C56321A00C7008D /* Media+Assets */,
 				3A8EB57A2C56316600C7008D /* Preview Content */,
 			);
 			path = Bouncy;
@@ -84,11 +82,9 @@
 		3A8EB5822C56317300C7008D /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
-				3A93775C2C57947400335325 /* Nodes */,
 				3A8EB5832C56317F00C7008D /* Scenes */,
-				3A9377612C58D5EC00335325 /* CollisionCategory.swift */,
-				3A9377632C58E2BA00335325 /* NodeName.swift */,
-				3A9691022C5ABC64004B44B3 /* ZPosition.swift */,
+				3A93775C2C57947400335325 /* Nodes */,
+				3A9691042C5AC287004B44B3 /* Model */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -104,7 +100,7 @@
 		3A8EB5862C56320200C7008D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				3A8EB5762C56316500C7008D /* ContentView.swift */,
+				3A8EB5762C56316500C7008D /* GameView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -147,6 +143,23 @@
 				3A93775F2C581E3E00335325 /* Ball.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		3A9691042C5AC287004B44B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A9691052C5AC291004B44B3 /* Enums */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A9691052C5AC291004B44B3 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				3A9377612C58D5EC00335325 /* CollisionCategory.swift */,
+				3A9691022C5ABC64004B44B3 /* ZPosition.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,8 +237,7 @@
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
 				3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,
-				3A9377642C58E2BA00335325 /* NodeName.swift in Sources */,
-				3A8EB5772C56316500C7008D /* ContentView.swift in Sources */,
+				3A8EB5772C56316500C7008D /* GameView.swift in Sources */,
 				3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

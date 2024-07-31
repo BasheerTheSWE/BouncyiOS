@@ -12,7 +12,7 @@ final class Ball: SKNode {
     let size: CGSize
     let radius: CGFloat
     
-    var movement = CGVector(dx: 10, dy: 10)
+    var movement = CGVector(dx: 5, dy: 5)
     
     // MARK: - INIT
     init(size: CGSize) {
@@ -20,7 +20,6 @@ final class Ball: SKNode {
         self.radius = size.width / 2
         super.init()
         
-        name = NodeName.ball.rawValue
         zPosition = ZPosition.ball.rawValue
         
         setPhysicsBody()
