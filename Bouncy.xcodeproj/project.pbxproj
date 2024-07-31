@@ -16,6 +16,7 @@
 		3A9377602C581E3E00335325 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775F2C581E3E00335325 /* Ball.swift */; };
 		3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377612C58D5EC00335325 /* CollisionCategory.swift */; };
 		3A9377642C58E2BA00335325 /* NodeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9377632C58E2BA00335325 /* NodeName.swift */; };
+		3A9691032C5ABC64004B44B3 /* ZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9691022C5ABC64004B44B3 /* ZPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		3A93775F2C581E3E00335325 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		3A9377612C58D5EC00335325 /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		3A9377632C58E2BA00335325 /* NodeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeName.swift; sourceTree = "<group>"; };
+		3A9691022C5ABC64004B44B3 /* ZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				3A8EB5832C56317F00C7008D /* Scenes */,
 				3A9377612C58D5EC00335325 /* CollisionCategory.swift */,
 				3A9377632C58E2BA00335325 /* NodeName.swift */,
+				3A9691022C5ABC64004B44B3 /* ZPosition.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A93775E2C57947F00335325 /* Player.swift in Sources */,
+				3A9691032C5ABC64004B44B3 /* ZPosition.swift in Sources */,
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
 				3A9377622C58D5EC00335325 /* CollisionCategory.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,

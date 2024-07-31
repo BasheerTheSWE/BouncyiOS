@@ -16,6 +16,8 @@ final class Player: SKNode {
         super.init()
         
         name = NodeName.player.rawValue
+        zPosition = ZPosition.player.rawValue
+        
         setPhysicsBody()
         setShape()
     }
@@ -34,6 +36,7 @@ final class Player: SKNode {
     
     private func setShape() {
         let shape = SKShapeNode(rectOf: size)
+        shape.zPosition = ZPosition.player.rawValue
         shape.fillColor = .white
         shape.lineWidth = 0
         shape.position = CGPoint(x: 0, y: 0)

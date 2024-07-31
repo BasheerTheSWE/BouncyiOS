@@ -25,6 +25,7 @@ final class GameScene: SKScene {
         // Top Bar
         let topBar = SKShapeNode(rectOf: CGSize(width: size.width, height: 10))
         topBar.name = NodeName.topBar.rawValue
+        topBar.zPosition = ZPosition.background.rawValue
         topBar.lineWidth = 0
         topBar.fillColor = .gamePurple
         topBar.position = CGPoint(x: size.width / 2, y: size.height - 5)
@@ -38,6 +39,7 @@ final class GameScene: SKScene {
         // Leading Bar
         let leadingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
         leadingBar.name = NodeName.sideBar.rawValue
+        leadingBar.zPosition = ZPosition.background.rawValue
         leadingBar.lineWidth = 0
         leadingBar.fillColor = .gamePurple
         leadingBar.position = CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
@@ -51,6 +53,7 @@ final class GameScene: SKScene {
         // Trailing Bar
         let trailingBar = SKShapeNode(rectOf: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)))
         trailingBar.name = NodeName.sideBar.rawValue
+        trailingBar.zPosition = ZPosition.background.rawValue
         trailingBar.lineWidth = 0
         trailingBar.fillColor = .gamePurple
         trailingBar.position = CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5)
@@ -72,6 +75,7 @@ final class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
+        
         player.changePosition(towards: location)
     }
     
