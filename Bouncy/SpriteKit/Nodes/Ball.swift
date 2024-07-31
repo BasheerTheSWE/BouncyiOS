@@ -23,7 +23,7 @@ final class Ball: SKNode {
         zPosition = ZPosition.ball.rawValue
         
         setPhysicsBody()
-        setShape()
+        drawHeadNode()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +40,7 @@ final class Ball: SKNode {
         physicsBody?.affectedByGravity = false
     }
     
-    private func setShape() {
+    private func drawHeadNode() {
         let shape = SKShapeNode(circleOfRadius: radius)
         shape.zPosition = ZPosition.ball.rawValue
         shape.fillColor = .gameLightBlue
@@ -58,8 +58,7 @@ final class Ball: SKNode {
         addChild(shape)
     }
     
-    // MARK: - UPDATE
-    func update() {
+    private func drawTailNode() {
         // Creating a tail ball node:
         let tailBall = SKShapeNode(circleOfRadius: radius)
         tailBall.zPosition = ZPosition.ball.rawValue
@@ -111,6 +110,11 @@ final class Ball: SKNode {
         // Displaying the tail nodes:
         scene?.addChild(tailLine)
         scene?.addChild(tailBall)
+    }
+    
+    // MARK: - UPDATE
+    func update() {
+        drawTailNode()
         
         // Updating the ball's position:
         position.x += movement.dx

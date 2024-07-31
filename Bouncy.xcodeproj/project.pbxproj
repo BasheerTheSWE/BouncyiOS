@@ -64,7 +64,6 @@
 				3A8EB5872C56320F00C7008D /* App */,
 				3A8EB5862C56320200C7008D /* Screens */,
 				3A8EB5822C56317300C7008D /* SpriteKit */,
-				3A8EB5892C56380E00C7008D /* Utils */,
 				3A8EB5882C56321A00C7008D /* Media+Assets */,
 				3A8EB57A2C56316600C7008D /* Preview Content */,
 			);
@@ -119,21 +118,6 @@
 				3A8EB5782C56316600C7008D /* Assets.xcassets */,
 			);
 			path = "Media+Assets";
-			sourceTree = "<group>";
-		};
-		3A8EB5892C56380E00C7008D /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				3A8EB58A2C56381400C7008D /* Extensions */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		3A8EB58A2C56381400C7008D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3A93775C2C57947400335325 /* Nodes */ = {
