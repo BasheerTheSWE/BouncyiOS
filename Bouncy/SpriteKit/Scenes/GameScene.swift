@@ -12,6 +12,9 @@ final class GameScene: SKScene {
     let player = Player(size: CGSize(width: 120, height: 20))
     let ball = Ball(size: CGSize(width: 20, height: 20))
     
+    let movingBar = SKShapeNode(rectOf: CGSize(width: 12, height: 200))
+    var movingBarMovement: CGFloat = 2
+    
     // MARK: - DID MOVE
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
@@ -29,14 +32,24 @@ final class GameScene: SKScene {
                categoryBitMask: .topBar)
         
         // Leading Bar
-        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)),
+        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height / 2)),
                position: CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
                categoryBitMask: .sideBar)
         
         // Trailing Bar
-        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height)),
+        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height / 2)),
                position: CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
                categoryBitMask: .sideBar)
+        
+        movingBar.zPosition = ZPosition.backgroundActiveElement.rawValue
+        movingBar.lineWidth = 0
+        movingBar.fillColor = .gameLightBlue
+        movingBar.position = CGPoint(x: movingBar.frame.width / 2, y: (size.height + player.position.y) / 2)
+        movingBar.physicsBody = SKPhysicsBody(rectangleOf: movingBar.frame.size)
+        movingBar.physicsBody?.categoryBitMask = CollisionCategory.sideMovingBar.rawValue
+        movingBar.physicsBody?.isDynamic = false
+        
+        addChild(movingBar)
     }
     
     // MARK: - TOUCHES
@@ -73,6 +86,14 @@ final class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         ball.update()
         
+        movingBar.position.y += movingBarMovement
+        
+        if movingBar.position.y <= player.position.y + (player.size.height / 2) + (movingBar.frame.height / 2) {
+            movingBarMovement *= -1
+        } else if movingBar.position.y >= size.height - movingBar.frame.height / 2 {
+            movingBarMovement *= -1
+        }
+        
         // Game Over:
         if ball.position.y < -50 {
             ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
@@ -93,6 +114,11 @@ extension GameScene: SKPhysicsContactDelegate {
         switch collision {
         case CollisionCategory.ball.rawValue | CollisionCategory.player.rawValue:
             ball.movement.dy *= -1
+            break
+            
+        case CollisionCategory.ball.rawValue | CollisionCategory.sideMovingBar.rawValue:
+            ball.movement.dy *= -1
+            ball.movement.dx *= -1
             break
             
         case CollisionCategory.ball.rawValue | CollisionCategory.topBar.rawValue:

@@ -8,8 +8,9 @@
 import Foundation
 
 enum ZPosition: CGFloat {
-    case background = 0
-    case player = 1
-    case ball = 2
-    case ballEffect = 3
+    case background              = 0
+    case backgroundActiveElement = 1
+    case player                  = 2
+    case ball                    = 3
+    case ballEffect              = 4
 }
