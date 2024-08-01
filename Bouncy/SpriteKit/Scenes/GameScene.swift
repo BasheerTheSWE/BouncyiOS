@@ -113,6 +113,13 @@ extension GameScene: SKPhysicsContactDelegate {
             ball.movement.dx = abs(ball.movement.dx) / ball.movement.dx * ball.defaultMovement.dx
             break
             
+        case CollisionCategory.ball.rawValue | CollisionCategory.topMovingBar.rawValue:
+            ball.movement.dy *= -1
+            ball.movement.dx *= -1
+            
+            ball.movement.dx += abs(ball.movement.dx) / ball.movement.dx * ball.movementIncreaseRate
+            break
+            
         case CollisionCategory.ball.rawValue | CollisionCategory.sideMovingBar.rawValue:
             ball.movement.dy *= -1
             ball.movement.dx *= -1
