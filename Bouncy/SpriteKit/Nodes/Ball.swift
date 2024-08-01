@@ -164,5 +164,23 @@ final class Ball: SKNode {
         // Updating the ball's position:
         position.x += movement.dx
         position.y += movement.dy
+        
+        // Keeping the ball in bounds:
+        guard let scene = scene as? GameScene else { return }
+        
+        if position.x < 0 && position.y > scene.player.position.y + scene.player.size.height / 2 {
+            position.x = size.width / 2 + 15
+            movement.dx = abs(movement.dx)
+        }
+        
+        if position.x > scene.size.width && position.y > scene.player.position.y + scene.player.size.height / 2 {
+            position.x = scene.size.width - size.width / 2 - 15
+            movement.dx = abs(movement.dx) * -1
+        }
+        
+        if position.y > scene.size.height {
+            position.y = scene.size.height - size.height / 2 - 15
+            movement.dy = abs(movement.dy) * -1
+        }
     }
 }

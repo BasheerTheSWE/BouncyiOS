@@ -44,12 +44,11 @@ final class GameScene: SKScene {
         
         // Moving bars:
         topMovingBar.position = CGPoint(x: size.width / 2, y: size.height - topMovingBar.size.height / 2)
-        addChild(topMovingBar)
-        
         leadingMovingBar.position = CGPoint(x: leadingMovingBar.size.width / 2, y: (size.height + player.position.y) / 2)
-        addChild(leadingMovingBar)
-        
         trailingMovingBar.position = CGPoint(x: size.width - trailingMovingBar.size.width / 2, y: (size.height + player.position.y) / 2)
+        
+        addChild(topMovingBar)
+        addChild(leadingMovingBar)
         addChild(trailingMovingBar)
     }
     
