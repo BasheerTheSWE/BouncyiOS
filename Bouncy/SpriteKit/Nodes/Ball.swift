@@ -13,6 +13,8 @@ final class Ball: SKNode {
     let radius: CGFloat
     
     var movement = CGVector(dx: 5, dy: 5)
+    let defaultMovement = CGVector(dx: 5, dy: 5)
+    let movementIncreaseRate: CGFloat = 2
     
     // MARK: - INIT
     init(size: CGSize) {
