@@ -28,8 +28,6 @@ final class MovingBar: SKShapeNode {
         self.path = path
         
         zPosition = ZPosition.backgroundActiveElement.rawValue
-        
-        setPhysicsBody()
         setShape()
     }
     
@@ -38,13 +36,6 @@ final class MovingBar: SKShapeNode {
     }
     
     // MARK: - DESIGN
-    private func setPhysicsBody() {
-        physicsBody = SKPhysicsBody(rectangleOf: frame.size)
-        physicsBody?.categoryBitMask = barType == .sideBar ? CollisionCategory.sideMovingBar.rawValue : CollisionCategory.topMovingBar.rawValue
-        physicsBody?.isDynamic = false
-        physicsBody?.allowsRotation = false
-    }
-    
     private func setShape() {
         lineWidth = 0
         fillColor = .gameLightBlue

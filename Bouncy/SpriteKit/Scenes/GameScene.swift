@@ -24,7 +24,6 @@ final class GameScene: SKScene {
     // MARK: - DID MOVE
     override func didMove(to view: SKView) {
         backgroundColor = .gameGray
-        physicsWorld.contactDelegate = self
         
         player.position = CGPoint(x: frame.size.width / 2, y: 100)
         addChild(player)
@@ -34,18 +33,15 @@ final class GameScene: SKScene {
         
         // Top Bar
         addBar(size: CGSize(width: size.width, height: sceneMargin),
-               position: CGPoint(x: size.width / 2, y: size.height - sceneMargin / 2),
-               categoryBitMask: .topBar)
+               position: CGPoint(x: size.width / 2, y: size.height - sceneMargin / 2))
         
         // Leading Bar
         addBar(size: CGSize(width: sceneMargin, height: size.height - (player.position.y + player.size.height / 2)),
-               position: CGPoint(x: sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
-               categoryBitMask: .sideBar)
+               position: CGPoint(x: sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5))
         
         // Trailing Bar
         addBar(size: CGSize(width: sceneMargin, height: size.height - (player.position.y + player.size.height / 2)),
-               position: CGPoint(x: size.width - sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
-               categoryBitMask: .sideBar)
+               position: CGPoint(x: size.width - sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5))
         
         // Moving bars:
         topMovingBar.position = CGPoint(x: size.width / 2, y: size.height - topMovingBar.size.height / 2)
@@ -82,16 +78,12 @@ final class GameScene: SKScene {
     }
     
     // MARK: - NODES
-    private func addBar(size: CGSize, position: CGPoint, categoryBitMask: CollisionCategory) {
+    private func addBar(size: CGSize, position: CGPoint) {
         let bar = SKShapeNode(rectOf: size)
         bar.zPosition = ZPosition.background.rawValue
         bar.lineWidth = 0
         bar.fillColor = .gamePurple
         bar.position = position
-        bar.physicsBody = SKPhysicsBody(rectangleOf: bar.frame.size)
-        bar.physicsBody?.categoryBitMask = categoryBitMask.rawValue
-        bar.physicsBody?.isDynamic = false
-        bar.physicsBody?.allowsRotation = false
         
         addChild(bar)
     }
@@ -108,58 +100,6 @@ final class GameScene: SKScene {
         // Game Over:
         if ball.position.y < -50 {
             ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-        }
-    }
-}
-
-
-// MARK: - CONTACT DELEGATE
-extension GameScene: SKPhysicsContactDelegate {
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        guard let CBMA = contact.bodyA.node?.physicsBody?.categoryBitMask,
-              let CBMB = contact.bodyB.node?.physicsBody?.categoryBitMask else { return }
-        
-        let collision = CBMA | CBMB
-        
-        switch collision {
-        case CollisionCategory.ball.rawValue | CollisionCategory.player.rawValue:
-            ball.movement.dy = ball.defaultMovement.dy
-            ball.movement.dx = abs(ball.movement.dx) / ball.movement.dx * ball.defaultMovement.dx
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.teleBarL.rawValue:
-//            if ball.movement.dx > 0 { ball.position.x = trailingTeleBar.position.x }
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.teleBarT.rawValue:
-//            if ball.movement.dx < 0 { ball.position.x = leadingTeleBar.position.x }
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.topMovingBar.rawValue:
-            ball.movement.dy *= -1
-            ball.movement.dx *= -1
-            
-            ball.movement.dx += abs(ball.movement.dx) / ball.movement.dx * ball.movementIncreaseRate
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.sideMovingBar.rawValue:
-            ball.movement.dy *= -1
-            ball.movement.dx *= -1
-            
-            ball.movement.dy += abs(ball.movement.dy) / ball.movement.dy * ball.movementIncreaseRate
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.topBar.rawValue:
-            ball.movement.dy *= -1
-            break
-            
-        case CollisionCategory.ball.rawValue | CollisionCategory.sideBar.rawValue:
-            ball.movement.dx *= -1
-            break
-            
-        default:
-            break
         }
     }
 }

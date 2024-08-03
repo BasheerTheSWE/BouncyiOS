@@ -43,8 +43,6 @@ final class Ball: SKNode {
         super.init()
         
         zPosition = ZPosition.ball.rawValue
-        
-        setPhysicsBody()
         drawHeadNode()
     }
     
@@ -53,15 +51,6 @@ final class Ball: SKNode {
     }
     
     // MARK: - DESIGN
-    private func setPhysicsBody() {
-//        physicsBody = SKPhysicsBody(circleOfRadius: radius)
-//        physicsBody?.categoryBitMask = CollisionCategory.ball.rawValue
-//        physicsBody?.contactTestBitMask = physicsBody?.collisionBitMask ?? 0
-//        physicsBody?.isDynamic = true
-//        physicsBody?.linearDamping = 0
-//        physicsBody?.affectedByGravity = false
-    }
-    
     private func drawHeadNode() {
         let shape = SKShapeNode(circleOfRadius: radius)
         shape.zPosition = ZPosition.ball.rawValue
@@ -156,6 +145,9 @@ final class Ball: SKNode {
         let player = scene.player
         let leadingTeleBar = scene.leadingTeleBar
         let trailingTeleBar = scene.trailingTeleBar
+        let topMovingBar = scene.topMovingBar
+        let leadingMovingBar = scene.leadingMovingBar
+        let trailingMovingBar = scene.trailingMovingBar
         
         drawTailNode()
         
@@ -170,29 +162,6 @@ final class Ball: SKNode {
         position.x += movement.dx
         position.y += movement.dy
         
-        // Wall collisions
-        // Side collisions
-        if position.y >= player.position.y + player.size.height / 2 {
-            if position.x <= scene.sceneMargin + size.width / 2 {
-                position.x = scene.sceneMargin + size.width / 2
-                movement.dx *= -1
-            } else if position.x >= scene.size.width - scene.sceneMargin - size.width / 2 {
-                position.x = scene.size.width - scene.sceneMargin - size.width / 2
-                movement.dx *= -1
-            }
-        }
-        
-        // Top collisions
-        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 {
-            position.y = scene.size.height - scene.sceneMargin - size.height / 2
-            movement.dy *= -1
-        }
-        
-        // Player Collisions
-        if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
-            movement.dy = abs(movement.dy)
-        }
-        
         // Checking collisions against the tele bars:
         // Leading
         if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
@@ -202,6 +171,57 @@ final class Ball: SKNode {
         // Trailing
         if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx > 0) {
             position.x = leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2
+        }
+        
+        // Moving bars collisions
+        // Top bar
+        if (position.y >= topMovingBar.position.y - topMovingBar.size.height / 2 - size.height / 2) && (position.x <= topMovingBar.position.x + topMovingBar.size.width / 2 + size.width / 2) && (position.x >= topMovingBar.position.x - topMovingBar.size.width / 2 - size.width / 2) && (movement.dy > 0) {
+            movement.dy = abs(movement.dy) * -1
+            movement.dx *= -1
+            
+            movement.dx += abs(movement.dx) / movement.dx * movementIncreaseRate
+        }
+        
+        // Leading
+        if (position.x <= leadingMovingBar.position.x + leadingMovingBar.size.width / 2 + size.width / 2) && (position.y <= leadingMovingBar.position.y + leadingMovingBar.size.height / 2 + size.height / 2) && (position.y >= leadingMovingBar.position.y - leadingMovingBar.size.height / 2 - size.height / 2) && (movement.dx < 0) {
+            movement.dy *= -1
+            movement.dx = abs(movement.dx)
+            
+            movement.dy += abs(movement.dy) / movement.dy * movementIncreaseRate
+        }
+        
+        // Trailing
+        if (position.x >= trailingMovingBar.position.x - trailingMovingBar.size.width / 2 - size.width / 2) && (position.y <= trailingMovingBar.position.y + trailingMovingBar.size.height / 2 + size.height / 2) && (position.y >= trailingMovingBar.position.y - trailingMovingBar.size.height / 2 - size.height / 2) && (movement.dx > 0) {
+            movement.dy *= -1
+            movement.dx = abs(movement.dx) * -1
+            
+            movement.dy += abs(movement.dy) / movement.dy * movementIncreaseRate
+        }
+        
+        // Wall collisions
+        // Side collisions
+        if position.y >= player.position.y + player.size.height / 2 {
+            if position.x <= scene.sceneMargin + size.width / 2 && movement.dx < 0 {
+                // Leading
+                position.x = scene.sceneMargin + size.width / 2
+                movement.dx = abs(movement.dx)
+            } else if position.x >= scene.size.width - scene.sceneMargin - size.width / 2 && movement.dx > 0 {
+                // Trailing
+                position.x = scene.size.width - scene.sceneMargin - size.width / 2
+                movement.dx = abs(movement.dx) * -1
+            }
+        }
+        
+        // Top collisions
+        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 && movement.dy > 0{
+            position.y = scene.size.height - scene.sceneMargin - size.height / 2
+            movement.dy = abs(movement.dy) * -1
+        }
+        
+        // Player Collisions
+        if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
+            movement.dy = abs(defaultMovement.dy)
+            movement.dx = abs(movement.dx) / movement.dx * defaultMovement.dx
         }
         
         // Keeping the ball in bounds:

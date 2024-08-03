@@ -16,8 +16,6 @@ final class Player: SKNode {
         super.init()
         
         zPosition = ZPosition.player.rawValue
-        
-        setPhysicsBody()
         setShape()
     }
     
@@ -26,13 +24,6 @@ final class Player: SKNode {
     }
     
     // MARK: - DESIGN
-    private func setPhysicsBody() {
-        physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = CollisionCategory.player.rawValue
-        physicsBody?.isDynamic = false
-        physicsBody?.allowsRotation = false
-    }
-    
     private func setShape() {
         let shape = SKShapeNode(rectOf: size)
         shape.zPosition = ZPosition.player.rawValue

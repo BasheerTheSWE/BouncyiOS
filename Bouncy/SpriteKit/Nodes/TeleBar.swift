@@ -23,8 +23,6 @@ final class TeleBar: SKShapeNode {
         self.path = path
         
         zPosition = ZPosition.backgroundActiveElement.rawValue
-        
-        setPhysicsBody()
         setShape()
     }
     
@@ -33,13 +31,6 @@ final class TeleBar: SKShapeNode {
     }
     
     // MARK: - DESIGN
-    private func setPhysicsBody() {
-        physicsBody = SKPhysicsBody(rectangleOf: frame.size)
-        physicsBody?.categoryBitMask = barType == .leading ? CollisionCategory.teleBarL.rawValue : CollisionCategory.teleBarT.rawValue
-        physicsBody?.isDynamic = false
-        physicsBody?.allowsRotation = false
-    }
-    
     private func setShape() {
         fillColor = .red
         lineWidth = 0
