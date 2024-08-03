@@ -9,6 +9,12 @@ import SpriteKit
 
 final class Ball: SKNode {
     
+    // The shadow and head positions are used to draw a tail connecting the two positions.
+    // The shadow positions is the ball's position before appending the movement or applying a collision.
+    // The head position is the ball's position after.
+    private var shadowPosition: CGPoint = .zero
+    private var headPosition: CGPoint = .zero
+    
     private var primaryShadows = [SKShapeNode]()
     private var secondaryShadows = [SKShapeNode]()
     
@@ -88,8 +94,8 @@ final class Ball: SKNode {
         tailBall.addChild(tailSecondaryBall)
         
         // Creating a tail line node:
-        let tailLineStartingPoint = position
-        let tailLineEndingPoint = CGPoint(x: position.x + movement.dx, y: position.y + movement.dy)
+        let tailLineStartingPoint = headPosition
+        let tailLineEndingPoint = shadowPosition
         
         let deltaY = tailLineStartingPoint.y - tailLineEndingPoint.y
         let deltaX = tailLineStartingPoint.x - tailLineEndingPoint.x
@@ -141,14 +147,6 @@ final class Ball: SKNode {
     
     // MARK: - UPDATE
     func update() {
-        guard let scene = scene as? GameScene else { return }
-        let player = scene.player
-        let leadingTeleBar = scene.leadingTeleBar
-        let trailingTeleBar = scene.trailingTeleBar
-        let topMovingBar = scene.topMovingBar
-        let leadingMovingBar = scene.leadingMovingBar
-        let trailingMovingBar = scene.trailingMovingBar
-        
         drawTailNode()
         
         // Updating the ball color:
@@ -159,21 +157,53 @@ final class Ball: SKNode {
         }
         
         // Updating the ball's position:
+        shadowPosition = position
         position.x += movement.dx
         position.y += movement.dy
         
-        // Checking collisions against the tele bars:
+        // Collisions:
+        applyPlayerCollisions()
+        applyTeleBarsCollisions()
+        applyMovingBarsCollisions()
+        applyWallCollisions()
+        
+        headPosition = position
+    }
+    
+    // MARK: - COLLISIONS
+    private func applyPlayerCollisions() {
+        guard let player = (scene as? GameScene)?.player else { return }
+        
+        if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
+            movement.dy = abs(defaultMovement.dy)
+            movement.dx = abs(movement.dx) / movement.dx * defaultMovement.dx
+        }
+    }
+    
+    private func applyTeleBarsCollisions() {
+        guard let scene = scene as? GameScene else { return }
+        let leadingTeleBar = scene.leadingTeleBar
+        let trailingTeleBar = scene.trailingTeleBar
+        
         // Leading
-        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
-            position.x = trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2
+        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
+            position.x = trailingTeleBar.position.x - trailingTeleBar.frame.width / 2
+            position.y -= movement.dy // Canceling the default y movement to make the teleportation appear as a straight line.
         }
         
         // Trailing
-        if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx > 0) {
-            position.x = leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2
+        if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx > 0) {
+            position.x = leadingTeleBar.position.x + leadingTeleBar.frame.width / 2
+            position.y -= movement.dy // Canceling the default y movement to make the teleportation appear as a straight line.
         }
+    }
+    
+    private func applyMovingBarsCollisions() {
+        guard let scene = scene as? GameScene else { return }
+        let topMovingBar = scene.topMovingBar
+        let leadingMovingBar = scene.leadingMovingBar
+        let trailingMovingBar = scene.trailingMovingBar
         
-        // Moving bars collisions
         // Top bar
         if (position.y >= topMovingBar.position.y - topMovingBar.size.height / 2 - size.height / 2) && (position.x <= topMovingBar.position.x + topMovingBar.size.width / 2 + size.width / 2) && (position.x >= topMovingBar.position.x - topMovingBar.size.width / 2 - size.width / 2) && (movement.dy > 0) {
             movement.dy = abs(movement.dy) * -1
@@ -197,8 +227,18 @@ final class Ball: SKNode {
             
             movement.dy += abs(movement.dy) / movement.dy * movementIncreaseRate
         }
+    }
+    
+    private func applyWallCollisions() {
+        guard let scene = scene as? GameScene else { return }
+        let player = scene.player
         
-        // Wall collisions
+        // Top collisions
+        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 && movement.dy > 0{
+            position.y = scene.size.height - scene.sceneMargin - size.height / 2
+            movement.dy = abs(movement.dy) * -1
+        }
+        
         // Side collisions
         if position.y >= player.position.y + player.size.height / 2 {
             if position.x <= scene.sceneMargin + size.width / 2 && movement.dx < 0 {
@@ -210,34 +250,6 @@ final class Ball: SKNode {
                 position.x = scene.size.width - scene.sceneMargin - size.width / 2
                 movement.dx = abs(movement.dx) * -1
             }
-        }
-        
-        // Top collisions
-        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 && movement.dy > 0{
-            position.y = scene.size.height - scene.sceneMargin - size.height / 2
-            movement.dy = abs(movement.dy) * -1
-        }
-        
-        // Player Collisions
-        if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
-            movement.dy = abs(defaultMovement.dy)
-            movement.dx = abs(movement.dx) / movement.dx * defaultMovement.dx
-        }
-        
-        // Keeping the ball in bounds:
-        if position.x < 0 && position.y > scene.player.position.y + scene.player.size.height / 2 {
-            position.x = size.width / 2 + 15
-            movement.dx = abs(movement.dx)
-        }
-        
-        if position.x > scene.size.width && position.y > scene.player.position.y + scene.player.size.height / 2 {
-            position.x = scene.size.width - size.width / 2 - 15
-            movement.dx = abs(movement.dx) * -1
-        }
-        
-        if position.y > scene.size.height {
-            position.y = scene.size.height - size.height / 2 - 15
-            movement.dy = abs(movement.dy) * -1
         }
     }
 }

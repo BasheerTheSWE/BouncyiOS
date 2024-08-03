@@ -11,15 +11,15 @@ final class GameScene: SKScene {
     
     let sceneMargin: CGFloat = 10
     
-    let player = Player(size: CGSize(width: 120, height: 20))
     let ball = Ball(size: CGSize(width: 20, height: 20))
+    let player = Player(size: CGSize(width: 120, height: 20))
+    
+    let leadingTeleBar = TeleBar(type: .leading)
+    let trailingTeleBar = TeleBar(type: .trailing)
     
     let topMovingBar = MovingBar(type: .topBar, length: 150)
     let leadingMovingBar = MovingBar(type: .sideBar, length: 200)
     let trailingMovingBar = MovingBar(type: .sideBar, length: 200)
-    
-    let leadingTeleBar = TeleBar(type: .leading)
-    let trailingTeleBar = TeleBar(type: .trailing)
     
     // MARK: - DID MOVE
     override func didMove(to view: SKView) {
