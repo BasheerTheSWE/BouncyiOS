@@ -54,12 +54,12 @@ final class Ball: SKNode {
     
     // MARK: - DESIGN
     private func setPhysicsBody() {
-        physicsBody = SKPhysicsBody(circleOfRadius: radius)
-        physicsBody?.categoryBitMask = CollisionCategory.ball.rawValue
-        physicsBody?.contactTestBitMask = physicsBody?.collisionBitMask ?? 0
-        physicsBody?.isDynamic = true
-        physicsBody?.linearDamping = 0
-        physicsBody?.affectedByGravity = false
+//        physicsBody = SKPhysicsBody(circleOfRadius: radius)
+//        physicsBody?.categoryBitMask = CollisionCategory.ball.rawValue
+//        physicsBody?.contactTestBitMask = physicsBody?.collisionBitMask ?? 0
+//        physicsBody?.isDynamic = true
+//        physicsBody?.linearDamping = 0
+//        physicsBody?.affectedByGravity = false
     }
     
     private func drawHeadNode() {
@@ -153,7 +153,9 @@ final class Ball: SKNode {
     // MARK: - UPDATE
     func update() {
         guard let scene = scene as? GameScene else { return }
+        let player = scene.player
         let leadingTeleBar = scene.leadingTeleBar
+        let trailingTeleBar = scene.trailingTeleBar
         
         drawTailNode()
         
@@ -168,15 +170,36 @@ final class Ball: SKNode {
         position.x += movement.dx
         position.y += movement.dy
         
+        // Wall collisions
+        // Side collisions
+        if position.y >= player.position.y + player.size.height / 2 {
+            if position.x <= scene.sceneMargin + size.width / 2 {
+                position.x = scene.sceneMargin + size.width / 2
+                movement.dx *= -1
+            } else if position.x >= scene.size.width - scene.sceneMargin - size.width / 2 {
+                position.x = scene.size.width - scene.sceneMargin - size.width / 2
+                movement.dx *= -1
+            }
+        }
+        
+        // Top collisions
+        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 {
+            position.y = scene.size.height - scene.sceneMargin - size.height / 2
+            movement.dy *= -1
+        }
+        
         // Checking collisions against the tele bars:
         // Leading
-        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) {
+        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && movement.dx > 0 {
             position.x = scene.trailingTeleBar.position.x
         }
         
-        // Keeping the ball in bounds:
-        guard let scene = scene as? GameScene else { return }
+        // Trailing
+        if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
+            position.x = scene.leadingTeleBar.position.x
+        }
         
+        // Keeping the ball in bounds:
         if position.x < 0 && position.y > scene.player.position.y + scene.player.size.height / 2 {
             position.x = size.width / 2 + 15
             movement.dx = abs(movement.dx)

@@ -41,11 +41,6 @@ final class TeleBar: SKShapeNode {
     }
     
     private func setShape() {
-        let shape = SKShapeNode(rectOf: CGSize(width: 20, height: 20))
-        shape.fillColor = .green
-        shape.position = .zero
-        
-        addChild(shape)
         fillColor = .red
         lineWidth = 0
     }
