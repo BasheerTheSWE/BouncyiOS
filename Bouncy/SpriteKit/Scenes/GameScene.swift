@@ -9,12 +9,17 @@ import SpriteKit
 
 final class GameScene: SKScene {
     
+    let sceneMargin: CGFloat = 10
+    
     let player = Player(size: CGSize(width: 120, height: 20))
     let ball = Ball(size: CGSize(width: 20, height: 20))
     
     let topMovingBar = MovingBar(type: .topBar, length: 150)
     let leadingMovingBar = MovingBar(type: .sideBar, length: 200)
     let trailingMovingBar = MovingBar(type: .sideBar, length: 200)
+    
+    let leadingTeleBar = TeleBar(type: .leading)
+    let trailingTeleBar = TeleBar(type: .trailing)
     
     // MARK: - DID MOVE
     override func didMove(to view: SKView) {
@@ -28,24 +33,33 @@ final class GameScene: SKScene {
         addChild(ball)
         
         // Top Bar
-        addBar(size: CGSize(width: size.width, height: 10),
-               position: CGPoint(x: size.width / 2, y: size.height - 5),
+        addBar(size: CGSize(width: size.width, height: sceneMargin),
+               position: CGPoint(x: size.width / 2, y: size.height - sceneMargin / 2),
                categoryBitMask: .topBar)
         
         // Leading Bar
-        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height / 2)),
-               position: CGPoint(x: 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
+        addBar(size: CGSize(width: sceneMargin, height: size.height - (player.position.y + player.size.height / 2)),
+               position: CGPoint(x: sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
                categoryBitMask: .sideBar)
         
         // Trailing Bar
-        addBar(size: CGSize(width: 10, height: size.height - (player.position.y + player.size.height / 2)),
-               position: CGPoint(x: size.width - 5, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
+        addBar(size: CGSize(width: sceneMargin, height: size.height - (player.position.y + player.size.height / 2)),
+               position: CGPoint(x: size.width - sceneMargin / 2, y: (size.height + (player.position.y + player.size.height)) / 2 - 5),
                categoryBitMask: .sideBar)
         
         // Moving bars:
         topMovingBar.position = CGPoint(x: size.width / 2, y: size.height - topMovingBar.size.height / 2)
         leadingMovingBar.position = CGPoint(x: leadingMovingBar.size.width / 2, y: (size.height + player.position.y) / 2)
         trailingMovingBar.position = CGPoint(x: size.width - trailingMovingBar.size.width / 2, y: (size.height + player.position.y) / 2)
+        
+        // Teleportation bars:
+        leadingTeleBar.position = CGPoint(x: sceneMargin + 15 + leadingTeleBar.frame.width / 2,
+                                          y: (size.height + player.position.y + player.size.height) / 2)
+        trailingTeleBar.position = CGPoint(x: size.width - sceneMargin - 15 - trailingTeleBar.frame.width / 2,
+                                           y: (size.height + player.position.y + player.size.height) / 2)
+        
+        addChild(leadingTeleBar)
+        addChild(trailingTeleBar)
         
         addChild(topMovingBar)
         addChild(leadingMovingBar)
@@ -88,6 +102,8 @@ final class GameScene: SKScene {
         topMovingBar.update()
         leadingMovingBar.update()
         trailingMovingBar.update()
+        leadingTeleBar.update()
+        trailingTeleBar.update()
         
         // Game Over:
         if ball.position.y < -50 {
@@ -110,6 +126,14 @@ extension GameScene: SKPhysicsContactDelegate {
         case CollisionCategory.ball.rawValue | CollisionCategory.player.rawValue:
             ball.movement.dy = ball.defaultMovement.dy
             ball.movement.dx = abs(ball.movement.dx) / ball.movement.dx * ball.defaultMovement.dx
+            break
+            
+        case CollisionCategory.ball.rawValue | CollisionCategory.teleBarL.rawValue:
+//            if ball.movement.dx > 0 { ball.position.x = trailingTeleBar.position.x }
+            break
+            
+        case CollisionCategory.ball.rawValue | CollisionCategory.teleBarT.rawValue:
+//            if ball.movement.dx < 0 { ball.position.x = leadingTeleBar.position.x }
             break
             
         case CollisionCategory.ball.rawValue | CollisionCategory.topMovingBar.rawValue:

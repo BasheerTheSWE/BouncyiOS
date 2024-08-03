@@ -9,8 +9,8 @@ import SpriteKit
 
 final class Ball: SKNode {
     
-    var primaryShadows = [SKShapeNode]()
-    var secondaryShadows = [SKShapeNode]()
+    private var primaryShadows = [SKShapeNode]()
+    private var secondaryShadows = [SKShapeNode]()
     
     let size: CGSize
     let radius: CGFloat
@@ -19,19 +19,19 @@ final class Ball: SKNode {
     let defaultMovement = CGVector(dx: 5, dy: 5)
     let movementIncreaseRate: CGFloat = 4
     
-    let ballPrimaryColor = UIColor.gameLightBlue
-    let ballSecondaryColor = UIColor.white
-    let fastBallPrimaryColor = UIColor.red
-    let fastBallSecondaryColor = UIColor.white
+    private let ballPrimaryColor = UIColor.gameLightBlue
+    private let ballSecondaryColor = UIColor.white
+    private let fastBallPrimaryColor = UIColor.red
+    private let fastBallSecondaryColor = UIColor.white
     
-    var isBallMovingMad = false {
+    private var isMovingMad = false {
         didSet {
             for shadow in primaryShadows {
-                shadow.fillColor = isBallMovingMad ? fastBallPrimaryColor : ballPrimaryColor
+                shadow.fillColor = isMovingMad ? fastBallPrimaryColor : ballPrimaryColor
             }
             
             for shadow in secondaryShadows {
-                shadow.fillColor = isBallMovingMad ? fastBallSecondaryColor : ballSecondaryColor
+                shadow.fillColor = isMovingMad ? fastBallSecondaryColor : ballSecondaryColor
             }
         }
     }
@@ -152,18 +152,27 @@ final class Ball: SKNode {
     
     // MARK: - UPDATE
     func update() {
+        guard let scene = scene as? GameScene else { return }
+        let leadingTeleBar = scene.leadingTeleBar
+        
         drawTailNode()
         
         // Updating the ball color:
         if abs(movement.dy) > defaultMovement.dy || abs(movement.dx) > defaultMovement.dx {
-            isBallMovingMad = true
+            isMovingMad = true
         } else {
-            isBallMovingMad = false
+            isMovingMad = false
         }
         
         // Updating the ball's position:
         position.x += movement.dx
         position.y += movement.dy
+        
+        // Checking collisions against the tele bars:
+        // Leading
+        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) {
+            position.x = scene.trailingTeleBar.position.x
+        }
         
         // Keeping the ball in bounds:
         guard let scene = scene as? GameScene else { return }
