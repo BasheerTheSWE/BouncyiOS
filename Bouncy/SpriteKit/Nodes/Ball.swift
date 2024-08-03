@@ -188,15 +188,20 @@ final class Ball: SKNode {
             movement.dy *= -1
         }
         
+        // Player Collisions
+        if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
+            movement.dy = abs(movement.dy)
+        }
+        
         // Checking collisions against the tele bars:
         // Leading
-        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && movement.dx > 0 {
-            position.x = scene.trailingTeleBar.position.x
+        if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
+            position.x = trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2
         }
         
         // Trailing
-        if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
-            position.x = scene.leadingTeleBar.position.x
+        if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2 - size.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx > 0) {
+            position.x = leadingTeleBar.position.x + leadingTeleBar.frame.width / 2 + size.width / 2
         }
         
         // Keeping the ball in bounds:
