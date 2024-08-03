@@ -9,11 +9,8 @@ import SpriteKit
 
 final class Ball: SKNode {
     
-    // The shadow and head positions are used to draw a tail connecting the two positions.
-    // The shadow positions is the ball's position before appending the movement or applying a collision.
-    // The head position is the ball's position after.
+    // The `shadowPosition` is used to store the previous location of the ball for the tail drawing.
     private var shadowPosition: CGPoint = .zero
-    private var headPosition: CGPoint = .zero
     
     private var primaryShadows = [SKShapeNode]()
     private var secondaryShadows = [SKShapeNode]()
@@ -94,7 +91,7 @@ final class Ball: SKNode {
         tailBall.addChild(tailSecondaryBall)
         
         // Creating a tail line node:
-        let tailLineStartingPoint = headPosition
+        let tailLineStartingPoint = position
         let tailLineEndingPoint = shadowPosition
         
         let deltaY = tailLineStartingPoint.y - tailLineEndingPoint.y
@@ -147,15 +144,6 @@ final class Ball: SKNode {
     
     // MARK: - UPDATE
     func update() {
-        drawTailNode()
-        
-        // Updating the ball color:
-        if abs(movement.dy) > defaultMovement.dy || abs(movement.dx) > defaultMovement.dx {
-            isMovingMad = true
-        } else {
-            isMovingMad = false
-        }
-        
         // Updating the ball's position:
         shadowPosition = position
         position.x += movement.dx
@@ -167,7 +155,15 @@ final class Ball: SKNode {
         applyMovingBarsCollisions()
         applyWallCollisions()
         
-        headPosition = position
+        // Drawing the tail
+        drawTailNode()
+        
+        // Updating the ball color:
+        if abs(movement.dy) > defaultMovement.dy || abs(movement.dx) > defaultMovement.dx {
+            isMovingMad = true
+        } else {
+            isMovingMad = false
+        }
     }
     
     // MARK: - COLLISIONS

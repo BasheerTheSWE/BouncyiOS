@@ -25,9 +25,9 @@ final class Player: SKNode {
     
     // MARK: - DESIGN
     private func setShape() {
-        let shape = SKShapeNode(rectOf: size)
+        let shape = SKShapeNode(rectOf: size, cornerRadius: 4)
         shape.zPosition = ZPosition.player.rawValue
-        shape.fillColor = .white
+        shape.fillColor = .gamePrimary
         shape.lineWidth = 0
         shape.position = CGPoint(x: 0, y: 0)
         
