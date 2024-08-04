@@ -9,7 +9,7 @@ import SpriteKit
 
 final class MainBoard: SKSpriteNode {
     
-    var level = 3
+    var level = 7
     
     // MARK: - INIT
     init() {
@@ -70,18 +70,174 @@ final class MainBoard: SKSpriteNode {
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 0, y: size.height / 2 - 4, width: size.width, height: 8), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: size.width / 2 - 20, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 20, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 8))
+                path.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 8))
+                path.closeSubpath()
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path)
+                context.cgContext.drawPath(using: .fill)
+                
                 context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 2, y: size.height / 2 - 2, width: size.width - 4, height: 4), cornerWidth: 2, cornerHeight: 2, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 break
                 
             case 5:
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 2, y: 0, width: size.width - 4, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: 0, width: size.width - 8, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: size.height / 2 - 4, width: size.width - 8, height: 8), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: size.width / 2 - 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 30, y: size.height / 2 + 8))
+                path.addLine(to: CGPoint(x: size.width / 2 - 30, y: size.height / 2 + 8))
+                path.closeSubpath()
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path)
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
+                context.cgContext.drawPath(using: .fill)
                 break
                 
             case 6:
+                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 2, y: 0, width: size.width - 4, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: 0, width: size.width - 8, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: size.height / 2 - 4, width: size.width - 8, height: 8), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: size.width / 2 - 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 30, y: size.height / 2 + 8))
+                path.addLine(to: CGPoint(x: size.width / 2 - 30, y: size.height / 2 + 8))
+                path.closeSubpath()
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path)
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path2 = CGMutablePath()
+                path2.move(to: CGPoint(x: size.width / 2 - 20, y: size.height / 2))
+                path2.addLine(to: CGPoint(x: size.width / 2 + 20, y: size.height / 2))
+                path2.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 7))
+                path2.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 7))
+                path2.closeSubpath()
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(path2)
+                context.cgContext.drawPath(using: .fill)
+                
+                let path3 = CGMutablePath()
+                path3.move(to: CGPoint(x: size.width / 2 - 10, y: size.height / 2))
+                path3.addLine(to: CGPoint(x: size.width / 2 + 10, y: size.height / 2))
+                path3.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 7))
+                path3.addLine(to: CGPoint(x: size.width / 2 - 5, y: size.height / 2 + 7))
+                path3.closeSubpath()
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path3)
+                context.cgContext.drawPath(using: .fill)
+                
+                let path4 = CGMutablePath()
+                path4.move(to: CGPoint(x: size.width / 2 - 5, y: size.height / 2 + 1))
+                path4.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 1))
+                path4.addLine(to: CGPoint(x: size.width / 2, y: size.height / 2 + 7))
+                path4.closeSubpath()
+                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.addPath(path4)
+                context.cgContext.drawPath(using: .fill)
                 break
                 
             case 7:
+                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 2, y: 0, width: size.width - 4, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: 0, width: size.width - 8, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: size.height / 2 - 4, width: size.width - 8, height: 8), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: size.width / 2 - 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 40, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 30, y: size.height / 2 + 8))
+                path.addLine(to: CGPoint(x: size.width / 2 - 30, y: size.height / 2 + 8))
+                path.closeSubpath()
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path)
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path2 = CGMutablePath()
+                path2.move(to: CGPoint(x: size.width / 2 - 20, y: size.height / 2))
+                path2.addLine(to: CGPoint(x: size.width / 2 + 20, y: size.height / 2))
+                path2.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 7))
+                path2.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 7))
+                path2.closeSubpath()
+                context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
+                context.cgContext.addPath(path2)
+                context.cgContext.drawPath(using: .fill)
+                
+                let path3 = CGMutablePath()
+                path3.move(to: CGPoint(x: size.width / 2 - 10, y: size.height / 2))
+                path3.addLine(to: CGPoint(x: size.width / 2 + 10, y: size.height / 2))
+                path3.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 7))
+                path3.addLine(to: CGPoint(x: size.width / 2 - 5, y: size.height / 2 + 7))
+                path3.closeSubpath()
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(path3)
+                context.cgContext.drawPath(using: .fill)
+                
+                let path4 = CGMutablePath()
+                path4.move(to: CGPoint(x: size.width / 2 - 5, y: size.height / 2 + 1))
+                path4.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 1))
+                path4.addLine(to: CGPoint(x: size.width / 2, y: size.height / 2 + 7))
+                path4.closeSubpath()
+                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.addPath(path4)
+                context.cgContext.drawPath(using: .fill)
                 break
                 
             case 8:
