@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A275DC02C5F7C5000C9FEF0 /* MainBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A275DBF2C5F7C5000C9FEF0 /* MainBoard.swift */; };
 		3A8E970E2C5B874900ED5102 /* MovingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E970D2C5B874900ED5102 /* MovingBar.swift */; };
 		3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5742C56316500C7008D /* BouncyApp.swift */; };
 		3A8EB5772C56316500C7008D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5762C56316500C7008D /* GameView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A275DBF2C5F7C5000C9FEF0 /* MainBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBoard.swift; sourceTree = "<group>"; };
 		3A8E970D2C5B874900ED5102 /* MovingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingBar.swift; sourceTree = "<group>"; };
 		3A8EB5712C56316500C7008D /* Bouncy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bouncy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8EB5742C56316500C7008D /* BouncyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyApp.swift; sourceTree = "<group>"; };
@@ -44,6 +46,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A275DBD2C5F7C3C00C9FEF0 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				3A93775D2C57947F00335325 /* Player.swift */,
+				3A275DBE2C5F7C4500C9FEF0 /* Boards */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		3A275DBE2C5F7C4500C9FEF0 /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				3A275DBF2C5F7C5000C9FEF0 /* MainBoard.swift */,
+			);
+			path = Boards;
+			sourceTree = "<group>";
+		};
 		3A8EB5682C56316500C7008D = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +144,7 @@
 		3A93775C2C57947400335325 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				3A93775D2C57947F00335325 /* Player.swift */,
+				3A275DBD2C5F7C3C00C9FEF0 /* Player */,
 				3A93775F2C581E3E00335325 /* Ball.swift */,
 				3A8E970D2C5B874900ED5102 /* MovingBar.swift */,
 				3AAEF27B2C5E2B0700EF7D75 /* TeleBar.swift */,
@@ -223,6 +242,7 @@
 				3A93775E2C57947F00335325 /* Player.swift in Sources */,
 				3A9691032C5ABC64004B44B3 /* ZPosition.swift in Sources */,
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
+				3A275DC02C5F7C5000C9FEF0 /* MainBoard.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,
 				3A8EB5772C56316500C7008D /* GameView.swift in Sources */,
 				3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */,
