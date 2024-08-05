@@ -15,9 +15,31 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             VStack {
+//                Text("Bouncy")
+//                    .font(.custom("Impact", size: 90))
+//                    .shadow(color: .gamePrimary, radius: 10)
+                
+                Image("Logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 280, height: 150)
+                
                 Spacer()
                 
-                HomeButton()
+                HomeButton(title: "Play") {
+                    print("Hello, World!")
+                }
+                
+                HomeButton(title: "Boards") {
+                    print("Hello, World!")
+                }
+                
+                HomeButton(title: "Settings") {
+                    print("Hello, World!")
+                }
+                
+                Spacer()
+                    .frame(height: 15)
             }
         }
     }

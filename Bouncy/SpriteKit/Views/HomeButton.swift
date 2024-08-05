@@ -9,9 +9,12 @@ import SwiftUI
 
 struct HomeButton: View {
     
+    let title: String
+    let action: (() -> ())?
+    
     var body: some View {
         Button {
-            print("Play")
+            action?()
         } label: {
             ZStack {
                 Path { path in
@@ -24,7 +27,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 0, y: 45))
                     path.closeSubpath()
                 }
-                .fill(.gamePrimary)
+                .fill(.gamePrimary.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -38,7 +41,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 0, y: 45))
                     path.closeSubpath()
                 }
-                .fill(.gameLightBlue)
+                .fill(.gameLightBlue.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -53,7 +56,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 275, y: 5))
                     path.closeSubpath()
                 }
-                .fill(.gameLightBlue)
+                .fill(.gameLightBlue.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -63,7 +66,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 20, y: 45))
                     path.addLine(to: CGPoint(x: 25, y: 50))
                 }
-                .stroke(.gameLightBlue, style: .init(lineWidth: 1))
+                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -73,7 +76,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 25, y: 45))
                     path.addLine(to: CGPoint(x: 30, y: 50))
                 }
-                .stroke(.gameLightBlue, style: .init(lineWidth: 1))
+                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -83,11 +86,11 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 270, y: 45))
                     path.addLine(to: CGPoint(x: 265, y: 50))
                 }
-                .stroke(.gameLightBlue, style: .init(lineWidth: 1))
+                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
-                Text("Play")
+                Text(title)
                     .bold()
                     .foregroundStyle(.white)
             }
@@ -96,5 +99,5 @@ struct HomeButton: View {
 }
 
 #Preview {
-    HomeButton()
+    HomeButton(title: "Play", action: nil)
 }
