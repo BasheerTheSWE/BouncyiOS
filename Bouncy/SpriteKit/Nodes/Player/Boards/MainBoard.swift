@@ -9,7 +9,11 @@ import SpriteKit
 
 final class MainBoard: SKSpriteNode {
     
-    var level = 9
+    var level = 10 {
+        didSet {
+            self.texture = makeTexture()
+        }
+    }
     
     // MARK: - INIT
     init() {
@@ -577,22 +581,22 @@ final class MainBoard: SKSpriteNode {
                 
                 // Third black arc
                 context.cgContext.setFillColor(UIColor.black.cgColor)
-                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 12, y: 0, width: size.width - 24, height: size.height / 2), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 12, y: 0, width: size.width - 24, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // Third black arc-end
                 context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
-                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 14, y: 0, width: size.width - 28, height: size.height / 2), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 14, y: 0, width: size.width - 28, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // Fourth black arc
                 context.cgContext.setFillColor(UIColor.black.cgColor)
-                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 20, y: 0, width: size.width - 40, height: size.height / 2), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 20, y: 0, width: size.width - 40, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // Fourth black arc-end
                 context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
-                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 22, y: 0, width: size.width - 44, height: size.height / 2), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 22, y: 0, width: size.width - 44, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // Fifth black arc

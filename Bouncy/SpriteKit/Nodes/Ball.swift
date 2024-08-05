@@ -227,23 +227,22 @@ final class Ball: SKNode {
     
     private func applyWallCollisions() {
         guard let scene = scene as? GameScene else { return }
-        let player = scene.player
         
         // Top collisions
-        if position.y >= scene.size.height - scene.sceneMargin - size.height / 2 && movement.dy > 0{
-            position.y = scene.size.height - scene.sceneMargin - size.height / 2
+        if position.y >= scene.size.height - scene.sceneMargin.top - size.height / 2 && movement.dy > 0 {
+            position.y = scene.size.height - scene.sceneMargin.top - size.height / 2
             movement.dy = abs(movement.dy) * -1
         }
         
         // Side collisions
-        if position.y >= player.position.y + player.size.height / 2 {
-            if position.x <= scene.sceneMargin + size.width / 2 && movement.dx < 0 {
+        if position.y >= scene.sceneMargin.bottom {
+            if position.x <= scene.sceneMargin.leading + size.width / 2 && movement.dx < 0 {
                 // Leading
-                position.x = scene.sceneMargin + size.width / 2
+                position.x = scene.sceneMargin.leading + size.width / 2
                 movement.dx = abs(movement.dx)
-            } else if position.x >= scene.size.width - scene.sceneMargin - size.width / 2 && movement.dx > 0 {
+            } else if position.x >= scene.size.width - scene.sceneMargin.trailing - size.width / 2 && movement.dx > 0 {
                 // Trailing
-                position.x = scene.size.width - scene.sceneMargin - size.width / 2
+                position.x = scene.size.width - scene.sceneMargin.trailing - size.width / 2
                 movement.dx = abs(movement.dx) * -1
             }
         }

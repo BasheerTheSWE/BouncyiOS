@@ -12,6 +12,11 @@ final class Player: SKNode {
     var size: CGSize = .zero
     let board = MainBoard()
     
+    // Jumping vars
+    var isJumping = false
+    let jumpCounterBounds: (CGFloat, CGFloat) = (20, -20)
+    lazy var jumpCounter = jumpCounterBounds.0
+    
     init(size: CGSize) {
         self.size = size
         super.init()
@@ -40,16 +45,35 @@ final class Player: SKNode {
         guard let scene = scene as? GameScene else { return }
         let sceneMargin = scene.sceneMargin
         
-        if location.x <= sceneMargin + size.width / 2 + 2 {
-            position.x = sceneMargin + size.width / 2 + 2
+        if location.x <= sceneMargin.leading + size.width / 2 + 2 {
+            position.x = sceneMargin.leading + size.width / 2 + 2
             return
         }
         
-        if location.x >= scene.size.width - sceneMargin - size.width / 2 - 2 {
-            position.x = scene.size.width - sceneMargin - size.width / 2 - 2
+        if location.x >= scene.size.width - sceneMargin.trailing - size.width / 2 - 2 {
+            position.x = scene.size.width - sceneMargin.trailing - size.width / 2 - 2
             return
         }
         
         position.x = location.x
+    }
+    
+    func jump() {
+        isJumping = true
+    }
+    
+    // MARK: - UPDATE
+    func update() {
+        // Jumping
+        if isJumping {
+            position.y += jumpCounter / 2
+            
+            if jumpCounter > jumpCounterBounds.1 {
+                jumpCounter -= 1
+            } else {
+                jumpCounter = jumpCounterBounds.0
+                isJumping = false
+            }
+        }
     }
 }

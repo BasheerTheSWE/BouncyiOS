@@ -39,11 +39,11 @@ final class TeleBar: SKShapeNode {
     // MARK: - UPDATE
     func update() {
         guard let scene = scene as? GameScene else { return }
-        let player = scene.player
+//        let player = scene.player
         
         position.y += movementSpeed
         
-        if (position.y <= player.position.y + player.size.height / 2 + frame.height / 2) || (position.y >= scene.size.height - scene.sceneMargin - frame.height / 2) {
+        if (position.y <= scene.sceneMargin.bottom + frame.height / 2) || (position.y >= scene.size.height - scene.sceneMargin.leading - frame.height / 2) {
             movementSpeed *= -1
         }
     }
