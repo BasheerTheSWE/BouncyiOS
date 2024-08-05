@@ -17,8 +17,9 @@ final class GameScene: SKScene {
     }
     
     let sceneMargin = SceneMargin()
+    let maximumBallsCount = 10
     
-    let ball = Ball(size: CGSize(width: 20, height: 20))
+    var balls: [Ball] = []
     let player = Player(size: CGSize(width: 120, height: 20))
     
     let leadingTeleBar = TeleBar(type: .leading)
@@ -35,8 +36,7 @@ final class GameScene: SKScene {
         player.position = CGPoint(x: frame.size.width / 2, y: sceneMargin.bottom - player.size.height / 2)
         addChild(player)
         
-        ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-        addChild(ball)
+        addBall(at: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
         
         // Top Bar
         addBar(size: CGSize(width: size.width, height: sceneMargin.top),
@@ -76,11 +76,11 @@ final class GameScene: SKScene {
         
         player.changePosition(towards: location)
         
-//        if player.board.level < 10 {
-//            player.board.level += 1
-//        } else {
-//            player.board.level = 1
-//        }
+        if player.board.level < 10 {
+            player.board.level += 1
+        } else {
+            player.board.level = 1
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -96,6 +96,16 @@ final class GameScene: SKScene {
     }
     
     // MARK: - NODES
+    func addBall(at position: CGPoint, direction: Ball.Direction = .random) {
+        guard balls.count < maximumBallsCount else { return }
+        
+        let ball = Ball(direction: direction)
+        ball.position = position
+        
+        balls.append(ball)
+        addChild(ball)
+    }
+    
     private func addBar(size: CGSize, position: CGPoint) {
         let bar = SKShapeNode(rectOf: size)
         bar.zPosition = ZPosition.background.rawValue
@@ -114,11 +124,20 @@ final class GameScene: SKScene {
         trailingMovingBar.update()
         leadingTeleBar.update()
         trailingTeleBar.update()
-        ball.update()
         
-        // Game Over:
-        if ball.position.y < -50 {
-            ball.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        balls.forEach { ball in
+            ball.update()
+            
+            if ball.position.y < -50 {
+                ball.removeFromParent()
+                balls.removeAll { $0 == ball }
+            }
+        }
+        
+        if balls.isEmpty {
+            // GameOver
+            // To be changed later
+            addBall(at: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
         }
     }
 }

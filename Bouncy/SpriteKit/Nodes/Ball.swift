@@ -9,14 +9,16 @@ import SpriteKit
 
 final class Ball: SKNode {
     
+    enum Direction { case topRight, topLeft, bottomRight, bottomLeft, random }
+    
     // The `shadowPosition` is used to store the previous location of the ball for the tail drawing.
     private var shadowPosition: CGPoint = .zero
     
     private var primaryShadows = [SKShapeNode]()
     private var secondaryShadows = [SKShapeNode]()
     
-    let size: CGSize
-    let radius: CGFloat
+    let size = CGSize(width: 20, height: 20)
+    let radius: CGFloat = 10
     
     var movement = CGVector(dx: 5, dy: 5)
     let defaultMovement = CGVector(dx: 5, dy: 5)
@@ -40,9 +42,30 @@ final class Ball: SKNode {
     }
     
     // MARK: - INIT
-    init(size: CGSize) {
-        self.size = size
-        self.radius = size.width / 2
+    init(direction: Direction) {
+        switch direction {
+        case .topRight:
+            movement = CGVector(dx: 5, dy: 5)
+            break
+            
+        case .topLeft:
+            movement = CGVector(dx: -5, dy: 5)
+            break
+            
+        case .bottomRight:
+            movement = CGVector(dx: 5, dy: -5)
+            break
+            
+        case .bottomLeft:
+            movement = CGVector(dx: -5, dy: -5)
+            break
+            
+        case .random:
+            movement = CGVector(dx: Double(Int.random(in: -5...5)), dy: Double(Int.random(in: -5...5)))
+            movement.dy = movement.dy == 0 ? 5 : movement.dy
+            movement.dx = movement.dx == 0 ? 5 : movement.dx
+            break
+        }
         super.init()
         
         zPosition = ZPosition.ball.rawValue
@@ -168,11 +191,16 @@ final class Ball: SKNode {
     
     // MARK: - COLLISIONS
     private func applyPlayerCollisions() {
-        guard let player = (scene as? GameScene)?.player else { return }
+        guard let scene = scene as? GameScene else { return }
+        let player = scene.player
         
         if (position.x >= player.position.x - player.size.width / 2 - size.width / 2) && (position.x <= player.position.x + player.size.width / 2 + size.width / 2) && (position.y >= player.position.y - player.size.height / 2 - size.height / 2) && (position.y <= player.position.y + player.size.height / 2 + size.height / 2) && movement.dy < 0 {
             movement.dy = abs(defaultMovement.dy)
             movement.dx = abs(movement.dx) / movement.dx * defaultMovement.dx
+            
+            if player.isJumping {
+                scene.addBall(at: position, direction: movement.dx > 0 ? .topLeft : .topRight)
+            }
         }
     }
     
