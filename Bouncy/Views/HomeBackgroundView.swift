@@ -1,16 +1,57 @@
 //
-//  HomeView.swift
+//  HomeBackgroundView.swift
 //  Bouncy
 //
-//  Created by Basheer Abdulmalik on 05/08/2024.
+//  Created by Basheer Abdulmalik on 06/08/2024.
 //
 
 import SwiftUI
 
-struct HomeView: View {
-    @State private var isColor = false
+struct HomeBackgroundView: View {
+    
     @State private var cache = NSCache<NSString, UIImage>()
-    lazy var reboundingBallImage = generateReboundingBallImage()
+    
+    var body: some View {
+        Rectangle()
+            .foregroundStyle(Color.black.gradient)
+            .ignoresSafeArea()
+        
+        GeometryReader { geo in
+            VStack(spacing: 0) {
+                Image(.logo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geo.size.width - 32)
+                    .padding(.top)
+                
+                Image(uiImage: generateReboundingBallImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geo.size.width - 32)
+                
+                Spacer()
+                
+                HStack(alignment: .bottom) {
+                    Image(.signature)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 150)
+                        .offset(x: -10)
+                        .opacity(1)
+                    
+                    Spacer()
+                    
+                    Image(.bottomRightFillerShape)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(.gameSubPrimary.gradient)
+                        .frame(width: 150)
+                }
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
+        .ignoresSafeArea(edges: .bottom)
+    }
     
     func generateReboundingBallImage() -> UIImage {
         
@@ -83,75 +124,8 @@ struct HomeView: View {
             return image
         }
     }
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundStyle(isColor ? Color.black.gradient : Color.gameGray.gradient)
-                .ignoresSafeArea()
-            
-            GeometryReader { geo in
-                VStack(spacing: 0) {
-                    Image(.logo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geo.size.width - 32)
-                        .padding(.top)
-                    
-                    Image(uiImage: generateReboundingBallImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geo.size.width - 32)
-                    
-                    Spacer()
-                    
-                    HStack(alignment: .bottom) {
-                        Image(.signature)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 150, height: 150)
-                            .offset(x: -10)
-                            .opacity(1)
-                        
-                        Spacer()
-                        
-                        Image(.bottomRightFillerShape)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundStyle(.gameSubPrimary.gradient)
-                            .frame(width: 150)
-                    }
-                }
-                .frame(width: geo.size.width, height: geo.size.height)
-            }
-            .ignoresSafeArea(edges: .bottom)
-            
-            VStack {
-//                Text("Bouncy")
-//                    .font(.custom("Impact", size: 90))
-//                    .shadow(color: .gamePrimary, radius: 10)
-                
-                Spacer()
-                
-                HomeButton(title: "Play") {
-                    isColor.toggle()
-                }
-                
-                HomeButton(title: "Boards") {
-                    print("Hello, World!")
-                }
-                
-                HomeButton(title: "Settings") {
-                    print("Hello, World!")
-                }
-                
-                Spacer()
-                    .frame(height: 15)
-            }
-        }
-    }
 }
 
 #Preview {
-    HomeView()
+    HomeBackgroundView()
 }
