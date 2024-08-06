@@ -13,6 +13,7 @@ struct BouncyApp: App {
         WindowGroup {
             HomeView()
                 .background(.gameGray)
+                .persistentSystemOverlays(.hidden)
         }
     }
 }
