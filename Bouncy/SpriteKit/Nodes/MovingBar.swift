@@ -38,7 +38,7 @@ final class MovingBar: SKShapeNode {
     // MARK: - DESIGN
     private func setShape() {
         lineWidth = 0
-        fillColor = .gameLightBlue
+        fillColor = .gameSecondary
     }
     
     // MARK: - UPDATE

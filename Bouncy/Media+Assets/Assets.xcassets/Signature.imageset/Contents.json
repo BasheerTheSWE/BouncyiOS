@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Logo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Signature.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

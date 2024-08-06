@@ -27,7 +27,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 0, y: 45))
                     path.closeSubpath()
                 }
-                .fill(.gamePrimary.gradient)
+                .fill(.gameSubPrimary.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -41,7 +41,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 0, y: 45))
                     path.closeSubpath()
                 }
-                .fill(.gameLightBlue.gradient)
+                .fill(.gameSecondary.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -56,7 +56,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 275, y: 5))
                     path.closeSubpath()
                 }
-                .fill(.gameLightBlue.gradient)
+                .fill(.gameSecondary.gradient)
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -66,7 +66,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 20, y: 45))
                     path.addLine(to: CGPoint(x: 25, y: 50))
                 }
-                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
+                .stroke(.gameSecondary.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -76,7 +76,7 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 25, y: 45))
                     path.addLine(to: CGPoint(x: 30, y: 50))
                 }
-                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
+                .stroke(.gameSecondary.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
@@ -86,18 +86,19 @@ struct HomeButton: View {
                     path.addLine(to: CGPoint(x: 270, y: 45))
                     path.addLine(to: CGPoint(x: 265, y: 50))
                 }
-                .stroke(.gameLightBlue.gradient, style: .init(lineWidth: 1))
+                .stroke(.gameSecondary.gradient, style: .init(lineWidth: 1))
                 .frame(width: 280, height: 50)
                 .clipped()
                 
                 Text(title)
                     .bold()
-                    .foregroundStyle(.white)
+                    .font(.custom("Impact", size: 24))
+                    .foregroundStyle(.white.gradient)
             }
         }
     }
 }
 
 #Preview {
-    HomeButton(title: "Play", action: nil)
+    HomeButton(title: "Settings", action: nil)
 }

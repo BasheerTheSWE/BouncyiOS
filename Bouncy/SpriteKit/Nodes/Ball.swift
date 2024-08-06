@@ -24,7 +24,7 @@ final class Ball: SKNode {
     let defaultMovement = CGVector(dx: 5, dy: 5)
     let movementIncreaseRate: CGFloat = 4
     
-    private let ballPrimaryColor = UIColor.gameLightBlue
+    private let ballPrimaryColor = UIColor.gameSecondary
     private let ballSecondaryColor = UIColor.white
     private let fastBallPrimaryColor = UIColor.red
     private let fastBallSecondaryColor = UIColor.white

@@ -14,15 +14,41 @@ struct HomeView: View {
             Color.gameGray
                 .ignoresSafeArea()
             
+            GeometryReader { geo in
+                VStack {
+                    Image(.logo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width - 32)
+                        .padding(.top)
+                    
+                    Spacer()
+                    
+                    HStack(alignment: .bottom) {
+                        Image(.signature)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 150, height: 150)
+                            .offset(x: -10)
+                            .opacity(1)
+                        
+                        Spacer()
+                        
+                        Image(.bottomRightFillerShape)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 150)
+                            .opacity(0.75)
+                    }
+                }
+                .frame(width: geo.size.width, height: geo.size.height)
+            }
+            .ignoresSafeArea(edges: .bottom)
+            
             VStack {
 //                Text("Bouncy")
 //                    .font(.custom("Impact", size: 90))
 //                    .shadow(color: .gamePrimary, radius: 10)
-                
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 280, height: 150)
                 
                 Spacer()
                 

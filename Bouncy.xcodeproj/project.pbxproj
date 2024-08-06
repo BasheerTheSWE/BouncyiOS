@@ -96,6 +96,7 @@
 			children = (
 				3A8EB5872C56320F00C7008D /* App */,
 				3A8EB5862C56320200C7008D /* Screens */,
+				3A603B522C60D9D700044916 /* Views */,
 				3A8EB5822C56317300C7008D /* SpriteKit */,
 				3A8EB5882C56321A00C7008D /* Media+Assets */,
 				3A8EB57A2C56316600C7008D /* Preview Content */,
@@ -115,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				3A8EB5832C56317F00C7008D /* Scenes */,
-				3A603B522C60D9D700044916 /* Views */,
 				3A93775C2C57947400335325 /* Nodes */,
 				3A9691042C5AC287004B44B3 /* Model */,
 			);

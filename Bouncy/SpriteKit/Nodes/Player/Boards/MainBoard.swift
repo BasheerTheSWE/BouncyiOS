@@ -123,7 +123,7 @@ final class MainBoard: SKSpriteNode {
                 break
                 
             case 6:
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -178,14 +178,14 @@ final class MainBoard: SKSpriteNode {
                 path4.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 1))
                 path4.addLine(to: CGPoint(x: size.width / 2, y: size.height / 2 + 7))
                 path4.closeSubpath()
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(path4)
                 context.cgContext.drawPath(using: .fill)
                 break
                 
             case 7:
                 // Outer shell
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -297,14 +297,14 @@ final class MainBoard: SKSpriteNode {
                 path4.addLine(to: CGPoint(x: size.width / 2 + 5, y: size.height / 2 + 1))
                 path4.addLine(to: CGPoint(x: size.width / 2, y: size.height / 2 + 7))
                 path4.closeSubpath()
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(path4)
                 context.cgContext.drawPath(using: .fill)
                 break
                 
             case 8:
                 // Outer shell
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -385,7 +385,7 @@ final class MainBoard: SKSpriteNode {
                 context.cgContext.drawPath(using: .fill)
                 
                 // Mid-long-horizontal purple line
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -396,7 +396,7 @@ final class MainBoard: SKSpriteNode {
                 path2.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 7))
                 path2.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 7))
                 path2.closeSubpath()
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(path2)
                 context.cgContext.drawPath(using: .fill)
                 
@@ -424,7 +424,7 @@ final class MainBoard: SKSpriteNode {
                 
             case 9:
                 // Outer shell
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -511,12 +511,12 @@ final class MainBoard: SKSpriteNode {
                 lineTrapezoid.addLine(to: CGPoint(x: size.width / 2 + 25, y: size.height / 2 + 5))
                 lineTrapezoid.addLine(to: CGPoint(x: size.width / 2 - 25, y: size.height / 2 + 5))
                 lineTrapezoid.closeSubpath()
-                context.cgContext.setStrokeColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setStrokeColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(lineTrapezoid)
                 context.cgContext.drawPath(using: .stroke)
                 
                 // Mid-long-horizontal purple line
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -527,7 +527,7 @@ final class MainBoard: SKSpriteNode {
                 path2.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 7))
                 path2.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 7))
                 path2.closeSubpath()
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(path2)
                 context.cgContext.drawPath(using: .fill)
                 
@@ -555,17 +555,17 @@ final class MainBoard: SKSpriteNode {
                 
             case 10:
                 // Outer shell
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // First black arc
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 2, y: 0, width: size.width - 4, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
                 // First black arc-end
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 4, y: 0, width: size.width - 8, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -615,7 +615,7 @@ final class MainBoard: SKSpriteNode {
                 context.cgContext.drawPath(using: .fill)
                 
                 // Sixth black arc-end
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 44, y: 0, width: size.width - 88, height: size.height / 2), cornerWidth: 4, cornerHeight: 4, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -642,12 +642,12 @@ final class MainBoard: SKSpriteNode {
                 lineTrapezoid.addLine(to: CGPoint(x: size.width / 2 + 25, y: size.height / 2 + 5))
                 lineTrapezoid.addLine(to: CGPoint(x: size.width / 2 - 25, y: size.height / 2 + 5))
                 lineTrapezoid.closeSubpath()
-                context.cgContext.setStrokeColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setStrokeColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(lineTrapezoid)
                 context.cgContext.drawPath(using: .stroke)
                 
                 // Mid-long-horizontal purple line
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 6, y: size.height / 2 - 1, width: size.width - 12, height: 2), cornerWidth: 1, cornerHeight: 1, transform: nil))
                 context.cgContext.drawPath(using: .fill)
                 
@@ -658,7 +658,7 @@ final class MainBoard: SKSpriteNode {
                 path2.addLine(to: CGPoint(x: size.width / 2 + 15, y: size.height / 2 + 7))
                 path2.addLine(to: CGPoint(x: size.width / 2 - 15, y: size.height / 2 + 7))
                 path2.closeSubpath()
-                context.cgContext.setFillColor(UIColor.gameLightBlue.cgColor)
+                context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
                 context.cgContext.addPath(path2)
                 context.cgContext.drawPath(using: .fill)
                 
