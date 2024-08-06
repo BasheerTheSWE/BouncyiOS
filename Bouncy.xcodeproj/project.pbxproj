@@ -11,7 +11,6 @@
 		3A603B512C60A6DD00044916 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A603B502C60A6DD00044916 /* HomeView.swift */; };
 		3A603B542C60D9ED00044916 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A603B532C60D9ED00044916 /* HomeButton.swift */; };
 		3A603B592C62856400044916 /* HomeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A603B582C62856400044916 /* HomeBackgroundView.swift */; };
-		3A603B5C2C628FA100044916 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A603B5B2C628FA100044916 /* GameViewModel.swift */; };
 		3A8E970E2C5B874900ED5102 /* MovingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E970D2C5B874900ED5102 /* MovingBar.swift */; };
 		3A8EB5752C56316500C7008D /* BouncyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5742C56316500C7008D /* BouncyApp.swift */; };
 		3A8EB5772C56316500C7008D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EB5762C56316500C7008D /* GameView.swift */; };
@@ -29,7 +28,6 @@
 		3A603B502C60A6DD00044916 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3A603B532C60D9ED00044916 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		3A603B582C62856400044916 /* HomeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundView.swift; sourceTree = "<group>"; };
-		3A603B5B2C628FA100044916 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		3A8E970D2C5B874900ED5102 /* MovingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingBar.swift; sourceTree = "<group>"; };
 		3A8EB5712C56316500C7008D /* Bouncy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bouncy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8EB5742C56316500C7008D /* BouncyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyApp.swift; sourceTree = "<group>"; };
@@ -78,15 +76,6 @@
 				3A603B582C62856400044916 /* HomeBackgroundView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		3A603B5A2C628F9400044916 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				3A8EB5762C56316500C7008D /* GameView.swift */,
-				3A603B5B2C628FA100044916 /* GameViewModel.swift */,
-			);
-			path = Game;
 			sourceTree = "<group>";
 		};
 		3A8EB5682C56316500C7008D = {
@@ -147,8 +136,8 @@
 		3A8EB5862C56320200C7008D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				3A603B5A2C628F9400044916 /* Game */,
 				3A603B502C60A6DD00044916 /* HomeView.swift */,
+				3A8EB5762C56316500C7008D /* GameView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -272,7 +261,6 @@
 				3A603B512C60A6DD00044916 /* HomeView.swift in Sources */,
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
 				3A275DC02C5F7C5000C9FEF0 /* MainBoard.swift in Sources */,
-				3A603B5C2C628FA100044916 /* GameViewModel.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,
 				3A603B592C62856400044916 /* HomeBackgroundView.swift in Sources */,
 				3A8EB5772C56316500C7008D /* GameView.swift in Sources */,

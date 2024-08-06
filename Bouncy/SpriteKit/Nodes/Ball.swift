@@ -201,6 +201,8 @@ final class Ball: SKNode {
             if player.isJumping {
                 scene.addBall(at: position, direction: movement.dx > 0 ? .topLeft : .topRight)
             }
+            
+            scene.score += Int((abs(movement.dy) + abs(movement.dx))) * 10
         }
     }
     
@@ -213,12 +215,16 @@ final class Ball: SKNode {
         if (position.x <= leadingTeleBar.position.x + leadingTeleBar.frame.width / 2) && (position.y <= leadingTeleBar.position.y + leadingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= leadingTeleBar.position.y - leadingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx < 0) {
             position.x = trailingTeleBar.position.x - trailingTeleBar.frame.width / 2
             position.y -= movement.dy // Canceling the default y movement to make the teleportation appear as a straight line.
+            
+            scene.score += 75
         }
         
         // Trailing
         if (position.x >= trailingTeleBar.position.x - trailingTeleBar.frame.width / 2) && (position.y <= trailingTeleBar.position.y + trailingTeleBar.frame.height / 2 + size.height / 2) && (position.y >= trailingTeleBar.position.y - trailingTeleBar.frame.height / 2 - size.height / 2) && (movement.dx > 0) {
             position.x = leadingTeleBar.position.x + leadingTeleBar.frame.width / 2
             position.y -= movement.dy // Canceling the default y movement to make the teleportation appear as a straight line.
+            
+            scene.score += 75
         }
     }
     
@@ -234,6 +240,8 @@ final class Ball: SKNode {
             movement.dx *= -1
             
             movement.dx += abs(movement.dx) / movement.dx * movementIncreaseRate
+            
+            scene.score += 100
         }
         
         // Leading
@@ -242,6 +250,8 @@ final class Ball: SKNode {
             movement.dx = abs(movement.dx)
             
             movement.dy += abs(movement.dy) / movement.dy * movementIncreaseRate
+            
+            scene.score += 100
         }
         
         // Trailing
@@ -250,6 +260,8 @@ final class Ball: SKNode {
             movement.dx = abs(movement.dx) * -1
             
             movement.dy += abs(movement.dy) / movement.dy * movementIncreaseRate
+            
+            scene.score += 100
         }
     }
     
