@@ -56,7 +56,6 @@ struct HomeBackgroundView: View {
     func generateReboundingBallImage() -> UIImage {
         
         if let image = cache.object(forKey: NSString(string: "image")) {
-            print("Reached")
             return image
         } else {
             let renderer = UIGraphicsImageRenderer(size: CGSize(width: 1024, height: 1024))
@@ -120,7 +119,6 @@ struct HomeBackgroundView: View {
             }
             
             cache.setObject(image, forKey: NSString(string: "image"))
-            print("Created teh image")
             return image
         }
     }

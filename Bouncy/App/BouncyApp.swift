@@ -12,7 +12,6 @@ struct BouncyApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .background(.gameGray)
                 .persistentSystemOverlays(.hidden)
         }
     }

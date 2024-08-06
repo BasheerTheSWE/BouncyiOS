@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    var viewModel = HomeViewModel()
+    @State private var didPressPlay = false
     
     var body: some View {
         ZStack {
@@ -19,7 +19,7 @@ struct HomeView: View {
                 Spacer()
                 
                 HomeButton(title: "Play") {
-                    print("Play")
+                    didPressPlay = true
                 }
                 
                 HomeButton(title: "Boards") {
@@ -33,6 +33,9 @@ struct HomeView: View {
                 Spacer()
                     .frame(height: 15)
             }
+        }
+        .fullScreenCover(isPresented: $didPressPlay) {
+            GameView(isPresented: $didPressPlay)
         }
     }
 }

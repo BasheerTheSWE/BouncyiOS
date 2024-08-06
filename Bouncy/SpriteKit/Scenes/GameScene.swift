@@ -9,6 +9,8 @@ import SpriteKit
 
 final class GameScene: SKScene {
     
+    var viewModel: GameViewModel?
+    
     struct SceneMargin {
         let top: CGFloat = 10
         let leading: CGFloat = 10
@@ -137,7 +139,8 @@ final class GameScene: SKScene {
         if balls.isEmpty {
             // GameOver
             // To be changed later
-            addBall(at: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
+            viewModel?.isGameOver = true
+//            addBall(at: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
         }
     }
 }
