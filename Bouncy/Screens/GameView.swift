@@ -32,8 +32,15 @@ struct GameView: View {
             
             if scene.isGameOver {
                 // Present the game over view
+                
+                VStack {
+                    Text("Game Over")
+                        .font(.custom("Impact", size: 24))
+                }
+                .background(.white)
             }
         }
+        .defersSystemGestures(on: .bottom)
         .background(.gameGray)
         .onChange(of: scene.isGameOver) { _, _ in
             isPresented = false
