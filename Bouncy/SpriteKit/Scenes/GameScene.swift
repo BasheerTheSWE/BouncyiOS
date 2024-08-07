@@ -39,7 +39,7 @@ import SpriteKit
         player.position = CGPoint(x: frame.size.width / 2, y: sceneMargin.bottom - player.size.height / 2)
         addChild(player)
         
-        addBall(at: CGPoint(x: frame.size.width / 2, y: frame.size.height / 2))
+        addBall()
         
         // Top Bar
         addBar(size: CGSize(width: size.width, height: sceneMargin.top),
@@ -74,6 +74,7 @@ import SpriteKit
     
     // MARK: - TOUCHES
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isGameOver else { return }
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
@@ -87,6 +88,7 @@ import SpriteKit
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isGameOver else { return }
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
@@ -94,16 +96,17 @@ import SpriteKit
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isGameOver else { return }
         guard let _ = touches.first else { return }
         player.jump()
     }
     
     // MARK: - NODES
-    func addBall(at position: CGPoint, direction: Ball.Direction = .random) {
+    func addBall(at position: CGPoint = .zero, direction: Ball.Direction = .random) {
         guard balls.count < maximumBallsCount else { return }
         
         let ball = Ball(direction: direction)
-        ball.position = position
+        ball.position = position != .zero ? position : CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
         
         balls.append(ball)
         addChild(ball)
@@ -121,6 +124,8 @@ import SpriteKit
     
     // MARK: - UPDATE
     override func update(_ currentTime: TimeInterval) {
+        guard !isGameOver else { return }
+        
         player.update()
         topMovingBar.update()
         leadingMovingBar.update()

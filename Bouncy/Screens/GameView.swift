@@ -15,36 +15,36 @@ struct GameView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
-                SpriteView(scene: scene)
-                    .onAppear { scene.size = geo.size }
-            }
-            .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
-            
-            VStack {
-                Spacer()
-                    .frame(height: scene.sceneMargin.top + 25)
-                
-                ScoreView(score: scene.score)
-                
-                Spacer()
-            }
-            
-            if scene.isGameOver {
-                // Present the game over view
+            Group {
+                GeometryReader { geo in
+                    SpriteView(scene: scene)
+                        .onAppear { scene.size = geo.size }
+                }
+                .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
                 
                 VStack {
-                    Text("Game Over")
-                        .font(.custom("Impact", size: 24))
+                    Spacer()
+                        .frame(height: scene.sceneMargin.top + 25)
+                    
+                    ScoreView(score: scene.score)
+                    
+                    Spacer()
                 }
-                .background(.white)
+            }
+            .blur(radius: scene.isGameOver ? 10 : 0)
+            
+            if scene.isGameOver {
+                GameOverView(score: scene.score) {
+                    isPresented = false
+                } onTappingPlay: {
+                    scene.isGameOver = false
+                    scene.score = 0
+                    scene.addBall()
+                }
             }
         }
         .defersSystemGestures(on: .bottom)
         .background(.gameGray)
-        .onChange(of: scene.isGameOver) { _, _ in
-            isPresented = false
-        }
     }
 }
 
