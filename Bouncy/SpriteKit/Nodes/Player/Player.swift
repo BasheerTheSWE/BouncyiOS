@@ -10,7 +10,7 @@ import SpriteKit
 final class Player: SKNode {
     
     var size: CGSize = .zero
-    let board = MainBoard()
+    let board = Board()
     
     // Jumping vars
     var isJumping = false

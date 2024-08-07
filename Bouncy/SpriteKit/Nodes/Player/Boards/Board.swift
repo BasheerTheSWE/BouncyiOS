@@ -1,5 +1,5 @@
 //
-//  MainBoard.swift
+//  Board.swift
 //  Bouncy
 //
 //  Created by Basheer Abdulmalik on 04/08/2024.
@@ -7,8 +7,11 @@
 
 import SpriteKit
 
-final class MainBoard: SKSpriteNode {
+final class Board: SKSpriteNode {
     
+    enum BoardType { case mainBoard }
+    
+    let boardType: BoardType
     var level = 10 {
         didSet {
             self.texture = makeTexture()
@@ -16,7 +19,8 @@ final class MainBoard: SKSpriteNode {
     }
     
     // MARK: - INIT
-    init() {
+    init(type boardType: BoardType = .mainBoard) {
+        self.boardType = boardType
         super.init(texture: nil, color: .clear, size: .zero)
         
         let texture = makeTexture()
