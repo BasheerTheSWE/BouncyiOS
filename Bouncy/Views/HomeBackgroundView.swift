@@ -12,10 +12,6 @@ struct HomeBackgroundView: View {
     @State private var cache = NSCache<NSString, UIImage>()
     
     var body: some View {
-        Rectangle()
-            .foregroundStyle(Color.black.gradient)
-            .ignoresSafeArea()
-        
         GeometryReader { geo in
             VStack(spacing: 0) {
                 Image(.logo)
@@ -51,6 +47,7 @@ struct HomeBackgroundView: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .ignoresSafeArea(edges: .bottom)
+        .background(.black.gradient)
     }
     
     func generateReboundingBallImage() -> UIImage {
@@ -62,20 +59,10 @@ struct HomeBackgroundView: View {
             let image = renderer.image { context in
                 
                 for i in 0...75 {
-                    let x: CGFloat = CGFloat(150 + i * 12)
-                    var y: CGFloat = CGFloat(150 - i * 8)
-                    
-                    let nextX: CGFloat = CGFloat(150 + (i + 1) * 12)
-                    var nextY: CGFloat = CGFloat(150 - (i + 1) * 8)
-                    
-                    if y < 0 {
-                        y = abs(y)
-                    }
-                    
-                    if nextY < 0 {
-                        nextY = abs(nextY)
-                    }
-                    
+                    let x = CGFloat(150 + i * 12)
+                    let y = abs(CGFloat(150 - i * 8))
+                    let nextX = CGFloat(150 + (i + 1) * 12)
+                    let nextY = abs(CGFloat(150 - (i + 1) * 8))
                     let size = CGSize(width: 75 - i, height: 75 - i)
                     
                     context.cgContext.setFillColor(UIColor.gameSecondary.cgColor)
@@ -90,20 +77,10 @@ struct HomeBackgroundView: View {
                 }
                 
                 for i in 0...75 {
-                    let x: CGFloat = CGFloat(150 + i * 12)
-                    var y: CGFloat = CGFloat(150 - i * 8)
-                    
-                    let nextX: CGFloat = CGFloat(150 + (i + 1) * 12)
-                    var nextY: CGFloat = CGFloat(150 - (i + 1) * 8)
-                    
-                    if y < 0 {
-                        y = abs(y)
-                    }
-                    
-                    if nextY < 0 {
-                        nextY = abs(nextY)
-                    }
-                    
+                    let x = CGFloat(150 + i * 12)
+                    let y = abs(CGFloat(150 - i * 8))
+                    let nextX = CGFloat(150 + (i + 1) * 12)
+                    let nextY = abs(CGFloat(150 - (i + 1) * 8))
                     let size = CGSize(width: 75 - i, height: 75 - i)
                     
                     context.cgContext.setFillColor(UIColor.white.cgColor)

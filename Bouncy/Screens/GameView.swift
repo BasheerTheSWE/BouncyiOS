@@ -15,9 +15,6 @@ struct GameView: View {
     
     var body: some View {
         ZStack {
-            Color.gameGray
-                .ignoresSafeArea()
-            
             GeometryReader { geo in
                 SpriteView(scene: scene)
                     .onAppear { scene.size = geo.size }
@@ -27,15 +24,8 @@ struct GameView: View {
             VStack {
                 Spacer()
                     .frame(height: scene.sceneMargin.top + 25)
-                Text("\(scene.score)")
-                    .font(.custom("Impact", size: 12))
-                    .bold()
-                    .foregroundStyle(.white)
-                    .animation(.interactiveSpring)
-                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(.gamePrimary)
-                    .clipShape(.capsule)
-                    .opacity(0.25)
+                
+                ScoreView(score: scene.score)
                 
                 Spacer()
             }
@@ -43,6 +33,10 @@ struct GameView: View {
             if scene.isGameOver {
                 // Present the game over view
             }
+        }
+        .background(.gameGray)
+        .onChange(of: scene.isGameOver) { _, _ in
+            isPresented = false
         }
     }
 }
