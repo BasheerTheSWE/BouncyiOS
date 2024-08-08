@@ -34,6 +34,7 @@ struct HomeView: View {
                     .frame(height: 15)
             }
         }
+        .preferredColorScheme(.dark)
         .fullScreenCover(isPresented: $didPressPlay) {
             GameView(boardType: .mainBoard, boardLevel: 10, isPresented: $didPressPlay)
         }

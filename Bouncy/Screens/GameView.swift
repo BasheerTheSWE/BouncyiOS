@@ -55,5 +55,5 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView(boardType: .mainBoard, boardLevel: 10, isPresented: .constant(true))
+    GameView(boardType: .speedyB, boardLevel: 1, isPresented: .constant(true))
 }

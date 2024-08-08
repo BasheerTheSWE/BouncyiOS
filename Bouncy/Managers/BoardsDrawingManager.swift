@@ -1,5 +1,5 @@
 //
-//  BoardsDrawing.swift
+//  BoardsDrawingManager.swift
 //  Bouncy
 //
 //  Created by Basheer Abdulmalik on 08/08/2024.
@@ -11,17 +11,21 @@ final class BoardDrawingManager {
     
     static let shared = BoardDrawingManager()
     
+    private let size = CGSize(width: 120, height: 20)
+    private lazy var renderer = UIGraphicsImageRenderer(size: size)
+    
     func drawBoard(type boardType: BoardType, level: Int) -> SKTexture {
         switch boardType {
         case .mainBoard:
             return drawMainBoard(level: level)
+            
+        case .speedyB:
+            return drawSpeedyB(level: level)
         }
     }
     
+    // MARK: - DRAWING
     private func drawMainBoard(level: Int) -> SKTexture {
-        let size = CGSize(width: 120, height: 20)
-        let renderer = UIGraphicsImageRenderer(size: size)
-        
         let image = renderer.image { context in
             switch level {
             case 1:
@@ -671,6 +675,72 @@ final class BoardDrawingManager {
                 context.cgContext.setFillColor(UIColor.gamePrimary.cgColor)
                 context.cgContext.addPath(path4)
                 context.cgContext.drawPath(using: .fill)
+                break
+                
+            default:
+                break
+            }
+        }
+        
+        return SKTexture(image: image)
+    }
+    
+    private func drawSpeedyB(level: Int) -> SKTexture {
+        let image = renderer.image { context in
+            switch level {
+            case 1:
+                context.cgContext.setFillColor(UIColor.red.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(origin: .zero, size: size), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.black.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 5, y: 0, width: size.width - 10, height: size.height), cornerWidth: 4, cornerHeight: 4, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                context.cgContext.setFillColor(UIColor.red.cgColor)
+                context.cgContext.addPath(CGPath(roundedRect: CGRect(x: 7, y: size.height / 2 - 2, width: size.width - 14, height: 4), cornerWidth: 2, cornerHeight: 2, transform: nil))
+                context.cgContext.drawPath(using: .fill)
+                
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: size.width / 2 - 20, y: 0))
+                path.addLine(to: CGPoint(x: size.width / 2 + 20, y: 0))
+                path.addLine(to: CGPoint(x: size.width / 2 + 22, y: 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 22, y: size.height - 2))
+                path.addLine(to: CGPoint(x: size.width / 2 + 20, y: size.height))
+                path.addLine(to: CGPoint(x: size.width / 2 - 20, y: size.height))
+                path.addLine(to: CGPoint(x: size.width / 2 - 22, y: size.height - 2))
+                path.addLine(to: CGPoint(x: size.width / 2 - 22, y: 2))
+                path.closeSubpath()
+                context.cgContext.setFillColor(UIColor.red.cgColor)
+                context.cgContext.addPath(path)
+                context.cgContext.drawPath(using: .fill)
+                break
+                
+            case 2:
+                break
+                
+            case 3:
+                break
+                
+            case 4:
+                break
+                
+            case 5:
+                break
+                
+            case 6:
+                break
+                
+            case 7:
+                break
+                
+            case 8:
+                break
+                
+            case 9:
+                break
+                
+            case 10:
                 break
                 
             default:

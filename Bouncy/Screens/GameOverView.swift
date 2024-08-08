@@ -17,7 +17,7 @@ struct GameOverView: View {
         VStack {
             Text("Game Over")
                 .font(.custom("Impact", size: 40))
-                .foregroundStyle(.white)
+                .foregroundStyle(.white.gradient)
                 .padding()
                 .shadow(color: .gamePrimary, radius: 0, x: 2, y: 2)
             
@@ -30,7 +30,8 @@ struct GameOverView: View {
                 
                 Text("\(score)")
                     .font(.custom("Impact", size: 32))
-                    .foregroundStyle(.gameSecondary.gradient)
+                    .foregroundStyle(.gamePrimary.gradient)
+                    .shadow(radius: 5)
             }
             
             Spacer()
@@ -52,16 +53,6 @@ struct GameOverView: View {
             
             HStack {
                 Button {
-                    onTappingReturn?()
-                } label: {
-                    Image(systemName: "house.fill")
-                        .tint(.white)
-                        .frame(width: 50, height: 50)
-                        .background(.gamePrimary.gradient)
-                        .clipShape(.circle)
-                }
-                
-                Button {
                     onTappingPlay?()
                 } label: {
                     Text("Play Again")
@@ -71,6 +62,17 @@ struct GameOverView: View {
                         .background(.gamePrimary.gradient)
                         .clipShape(.capsule)
                 }
+                
+                Button {
+                    onTappingReturn?()
+                } label: {
+                    Image(systemName: "house.fill")
+                        .tint(.white)
+                        .frame(width: 50, height: 50)
+                        .background(.gamePrimary.gradient)
+                        .clipShape(.circle)
+                }
+                
             }
             .padding()
         }
@@ -78,7 +80,7 @@ struct GameOverView: View {
         .background(.gameGray.gradient)
         .clipShape(.rect(cornerRadius: 12))
         .clipped()
-        .shadow(color: .gamePrimary, radius: 5)
+        .shadow(color: .gamePrimary, radius: 1)
     }
 }
 

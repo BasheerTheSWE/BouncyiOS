@@ -9,4 +9,5 @@ import Foundation
 
 enum BoardType {
     case mainBoard
+    case speedyB
 }
