@@ -25,6 +25,8 @@
 		3A9377602C581E3E00335325 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93775F2C581E3E00335325 /* Ball.swift */; };
 		3A9691032C5ABC64004B44B3 /* ZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9691022C5ABC64004B44B3 /* ZPosition.swift */; };
 		3AAEF27C2C5E2B0700EF7D75 /* TeleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAEF27B2C5E2B0700EF7D75 /* TeleBar.swift */; };
+		3AB58B552C64623100989C16 /* BoardsDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB58B542C64623100989C16 /* BoardsDrawing.swift */; };
+		3AB58B582C64645A00989C16 /* BoardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB58B572C64645A00989C16 /* BoardType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		3A93775F2C581E3E00335325 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		3A9691022C5ABC64004B44B3 /* ZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPosition.swift; sourceTree = "<group>"; };
 		3AAEF27B2C5E2B0700EF7D75 /* TeleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleBar.swift; sourceTree = "<group>"; };
+		3AB58B542C64623100989C16 /* BoardsDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDrawing.swift; sourceTree = "<group>"; };
+		3AB58B572C64645A00989C16 /* BoardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7A5C972C63AF0A0061B031 /* UDKey.swift */,
+				3AB58B572C64645A00989C16 /* BoardType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				3A603B522C60D9D700044916 /* Views */,
 				3A8EB5822C56317300C7008D /* SpriteKit */,
 				3A7A5C962C63AEEC0061B031 /* Enums */,
+				3AB58B562C64643800989C16 /* Managers */,
 				3A8EB5882C56321A00C7008D /* Media+Assets */,
 				3A8EB57A2C56316600C7008D /* Preview Content */,
 			);
@@ -205,6 +211,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		3AB58B562C64643800989C16 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3AB58B542C64623100989C16 /* BoardsDrawing.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +297,7 @@
 				3A8EB5852C56318A00C7008D /* GameScene.swift in Sources */,
 				3A275DC02C5F7C5000C9FEF0 /* Board.swift in Sources */,
 				3A9377602C581E3E00335325 /* Ball.swift in Sources */,
+				3AB58B552C64623100989C16 /* BoardsDrawing.swift in Sources */,
 				3A603B592C62856400044916 /* HomeBackgroundView.swift in Sources */,
 				3A8EB5772C56316500C7008D /* GameView.swift in Sources */,
 				3A603B542C60D9ED00044916 /* HomeButton.swift in Sources */,
@@ -290,6 +305,7 @@
 				3A7A5C9A2C63D8A00061B031 /* BoardSelectionView.swift in Sources */,
 				3A7A5C982C63AF0A0061B031 /* UDKey.swift in Sources */,
 				3A7A5C932C632F8A0061B031 /* ScoreView.swift in Sources */,
+				3AB58B582C64645A00989C16 /* BoardType.swift in Sources */,
 				3A8E970E2C5B874900ED5102 /* MovingBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

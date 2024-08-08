@@ -9,16 +9,16 @@ import SpriteKit
 
 final class Player: SKNode {
     
-    var size: CGSize = .zero
-    let board = Board()
+    var size: CGSize = CGSize(width: 120, height: 10)
+    let board: Board
     
     // Jumping vars
     var isJumping = false
     let jumpCounterBounds: (CGFloat, CGFloat) = (20, -20)
     lazy var jumpCounter = jumpCounterBounds.0
     
-    init(size: CGSize) {
-        self.size = size
+    init(boardType: BoardType, level: Int) {
+        self.board = Board(type: boardType, level: level)
         super.init()
         
         zPosition = ZPosition.player.rawValue

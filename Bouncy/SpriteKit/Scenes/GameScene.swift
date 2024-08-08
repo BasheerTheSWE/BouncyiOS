@@ -23,7 +23,7 @@ import SpriteKit
     let maximumBallsCount = 10
     
     var balls: [Ball] = []
-    let player = Player(size: CGSize(width: 120, height: 20))
+    let player: Player
     
     let leadingTeleBar = TeleBar(type: .leading)
     let trailingTeleBar = TeleBar(type: .trailing)
@@ -31,6 +31,16 @@ import SpriteKit
     let topMovingBar = MovingBar(type: .topBar, length: 150)
     let leadingMovingBar = MovingBar(type: .sideBar, length: 200)
     let trailingMovingBar = MovingBar(type: .sideBar, length: 200)
+    
+    // MARK: INIT
+    init(boardType: BoardType, level: Int) {
+        self.player = Player(boardType: boardType, level: level)
+        super.init(size: .zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - DID MOVE
     override func didMove(to view: SKView) {

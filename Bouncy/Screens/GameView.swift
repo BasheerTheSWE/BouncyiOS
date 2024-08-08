@@ -9,8 +9,8 @@ import SwiftUI
 import SpriteKit
 
 struct GameView: View {
-    
-    private let scene = GameScene()
+
+    private let scene: GameScene
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -46,8 +46,14 @@ struct GameView: View {
         .defersSystemGestures(on: .bottom)
         .background(.gameGray)
     }
+    
+    // MARK: - INIT
+    init(boardType: BoardType, boardLevel level: Int, isPresented: Binding<Bool>) {
+        self.scene = GameScene(boardType: boardType, level: level)
+        self._isPresented = isPresented
+    }
 }
 
 #Preview {
-    GameView(isPresented: .constant(true))
+    GameView(boardType: .mainBoard, boardLevel: 10, isPresented: .constant(true))
 }

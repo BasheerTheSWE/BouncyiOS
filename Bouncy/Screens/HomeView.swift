@@ -35,7 +35,7 @@ struct HomeView: View {
             }
         }
         .fullScreenCover(isPresented: $didPressPlay) {
-            GameView(isPresented: $didPressPlay)
+            GameView(boardType: .mainBoard, boardLevel: 10, isPresented: $didPressPlay)
         }
     }
 }
